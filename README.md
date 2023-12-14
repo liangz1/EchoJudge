@@ -1,6 +1,7 @@
-# RAG evaluation datasets and EchoJudge
+# EchoJudge
+At its core, EchoJudge is an LLM Judge that aligns with human feedback, emulating human preferences extracted from human_feedback.yaml datasets to deliver consistent ratings. This alignment ensures that similar questions receive similar reward scores, suitable for regression tests. EchoJudge is for developers seeking to refine and test their RAG applications with both human-guided AI feedback. 
 
-## RAG evaluation datasets: human_feedback.yaml
+## RAG evaluation datasets for EchoJudge: human_feedback.yaml
 
 Humans may want to provide 3 types of feedback:
 1. rating+reason to existing records
@@ -27,7 +28,6 @@ RAG_app_versions can be:
 `bricky_version1, lakesense_version123, bard_gemini_pro_1201, ChatGPT_GPT4_0612...`
 
 ## EchoJudge
-At its core, EchoJudge is an LLM Judge that aligns with human feedback, emulating human preferences extracted from human_feedback.yaml datasets to deliver consistent ratings. This alignment ensures that similar questions receive similar reward scores, suitable for regression tests. EchoJudge is for developers seeking to refine and test their RAG applications with both human-guided AI feedback. 
 
 Proposal:
 ```python
