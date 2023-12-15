@@ -14,7 +14,7 @@ Requirements for human_feedback.yaml template:
 
 Design for my yaml template
 
-Prompt to generate the Pydantic code: (Gemini Pro did better than GPT-4)
+♊️ Prompt to generate the Pydantic code: (Gemini Pro did better than GPT-4)
 ```
 Each QAEntry has:
 1. 1 user_input: str, required.
