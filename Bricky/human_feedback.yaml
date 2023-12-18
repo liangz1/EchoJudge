@@ -1,321 +1,54 @@
-- id: 1
-  question: What is dark mode in databricks?
-  human:
-    - answer: Same as gemini_pro's answer.
-      relevant_source_links:
-        - Same as gemini_pro's source_links.
-      adapted_based_on: gemini_pro
-  bricky: 
-    answer: >+
-      I'm sorry, but I couldn't find any information related to dark mode in the Databricks documentation. Is there anything else I can help you with?
-    feedback:
-      rating: bad
-      reason: Failed to retrieve context. 
-  gemini_pro: 
-    answer: >+
-      Databricks dark mode is a color scheme option that switches the interface background from light to dark. This can be beneficial for several reasons:
-      Improved readability: Dark mode can improve readability, especially for users who spend long hours staring at bright screens. The dark background helps reduce eye strain and fatigue, making it easier to focus on the content.
-      Reduced visual noise: By eliminating the bright white background, dark mode reduces visual noise and helps improve concentration. This can be particularly helpful when working with complex data or code.
-      Enhanced aesthetics: Many users simply prefer the look and feel of dark mode. It can create a more modern and professional environment, which can be especially appealing for developers and data analysts.
-      Here is an image of how Databricks looks in dark mode:
-      https://chromewebstore.google.com/detail/azure-databricks-dark-mod/egnimjpijfnhfgikecgkajlkdhghigle?pli=1 
-      How to enable dark mode in Databricks:
-      There are two ways to enable dark mode in Databricks:
-      Using the user interface:
-      Open any notebook.
-      Click on the View menu.
-      Select Theme.
-      Choose Dark Theme.
-      Using keyboard shortcut:
-      Press Ctrl + Shift + D (or Cmd + Shift + D on macOS) on your keyboard.
-      Additional benefits of using dark mode:
-      Reduced battery consumption: On devices with OLED screens, dark mode can help save battery life.
-      Reduced eye fatigue: Dark mode can be helpful for people with conditions such as migraines or photophobia.
-      Things to consider before using dark mode:
-      Accessibility: While dark mode can be beneficial for many users, it can also make it difficult for people with visual impairments to see the content. If you have accessibility concerns, you may want to stick with the light theme.
-      Color contrast: Some users may find that the color contrast in dark mode is too low, making it difficult to read the text. If this is the case, you can adjust the color contrast settings in your browser or operating system.
-      Overall, dark mode can be a valuable tool for improving your Databricks experience. Whether you are looking to improve readability, reduce eye strain, or simply prefer the aesthetics, there are many reasons to give dark mode a try.
-    source_links:
-      - https://docs.databricks.com/en/notebooks/notebook-ui.html#view-notebooks-in-dark-mode
-    feedback: good
-- id: 2
-  question: Can I use the same AWS Identity for multiple workspaces?
-  human:
-    - answer: Same as bricky's answer.
-      relevant_source_links:
-        - Same as bricky's source_links.
-      adapted_based_on: bricky
-  bricky:
-    answer: >+
-      Yes, you can use the same AWS Identity and Access Management (IAM) role for multiple Databricks workspaces. This can be useful if you want to manage multiple workspaces with the same set of permissions. When you create a new workspace, you can specify an existing IAM role that you have previously created. Alternatively, you can create a new IAM role specifically for the new workspace. Note that if you use the same IAM role for multiple workspaces, the role must have permissions to access all the AWS resources required by each workspace. For more information on creating and using IAM roles with Databricks workspaces, see the [Databricks documentation](https://docs.databricks.com/administration-guide/cloud-configurations/aws/iam-roles.html#workspace-iam-role).
-    source_links:
-      - https://learn.microsoft.com/en-us/azure/databricks/dev-tools/index-sp
-    feedback: good
-  gemini_pro:
-    answer: >+
-      Yes, you can use the same AWS Identity for multiple Databricks workspaces. This is possible because Databricks associates users with its own internal user IDs, not with AWS Identity IDs. When you authenticate with your AWS Identity for the first time, Databricks creates a new internal user ID for you and associates it with your AWS Identity ID. This internal user ID is then used to identify you across all Databricks workspaces.
-
-      Here are some key points to remember about using the same AWS Identity for multiple Databricks workspaces:
-
-      * **Permissions are managed independently in each workspace.** Even though you use the same AWS Identity, your permissions and roles will be different in each workspace. You need to be explicitly granted access to each workspace you want to use.
-      * **Single Sign-On (SSO) may apply.** If SSO is enabled for your Databricks account, you will automatically be logged in to all workspaces associated with your AWS Identity when you log in to one workspace.
-      * **Different workspace configurations may require additional authentication.** While your AWS Identity allows you to access multiple workspaces, you may need to provide additional authentication credentials depending on how the workspace is configured. For example, if the workspace uses its own managed identity, you may need to provide the credentials for that identity in addition to your AWS credentials.
-
-      Overall, using the same AWS Identity for multiple Databricks workspaces can be a convenient way to manage your access to different environments. However, it's important to be aware of the differences in permissions and authentication requirements between workspaces.
-    feedback:
-      rating: bad
-      reason: Wrong source.
-- id: 3
-  question: how can I export more than 1000 rows in databricks?
-  human:
-    - answer: Similar to gemini_pro's answer, but using the following sources.
-      relevant_source_links:
-        - https://docs.databricks.com/en/sql/user/queries/queries.html
-        - https://docs.databricks.com/en/sql/get-started/visualize-data-tutorial.html
-      adapted_based_on: gemini_pro
-  bricky: 
-    answer: >+
-      To export more than 1000 rows, you can use the `repartition` method to increase the number of partitions in the DataFrame. This will allow you to write out more than 1000 rows to a single file. Here's an example:\n\n```\ndf = spark.range(2000)\ndf.repartition(4).write.csv(\"mydata.csv\")\n```\n\nIn this example, we create a DataFrame with 2000 rows and then call `repartition(4)` to create 4 partitions. We then write the DataFrame to a CSV file using the `write.csv` method. Because we have 4 partitions, the output will be split across 4 files, each containing 500 rows.
-    feedback:
-      rating: bad
-      reason: It did not understand the assumption behind the question. Also, the retrieved source is wrong.
-    source_links:
-      - https://docs.databricks.com/notebooks/notebooks-code.html
-  gemini_pro: 
-    answer: >+
-      Unfortunately, Databricks has a default limit of displaying only the first 1000 rows of any query results. However, there are several ways to export more than 1000 rows from Databricks:
-
-      **1. Modifying the Query:**
-
-      * **Unselect the "LIMIT 1000" option:** This is the simplest way to export all the rows. In the "Run" drop-down menu, simply unselect the "LIMIT 1000" option, and your query will return all the results.
-      * **Explicitly set the LIMIT clause:** You can explicitly specify the desired number of rows in the LIMIT clause of your query. For example, `SELECT * FROM table LIMIT 10000` will return the first 10,000 rows.
-
-      **2. Downloading the Results:**
-
-      * **Download CSV:** You can download the results as a CSV file directly from the notebook. Click the "Download CSV" button in the notebook interface. This will download a file containing all the rows, regardless of the display limit.
-      * **Write to DBFS**: You can write the results to a file in the Databricks File System (DBFS). This is useful for exporting large datasets. Use the `DataFrame.write` method to write the data to a file. For example, `df.write.csv("/FileStore/data.csv")` will write the DataFrame to a CSV file named `data.csv` in the root directory of your DBFS.
-
-      **3. Using Pandas:**
-
-      * **Convert to Pandas:** You can convert the Spark DataFrame to a Pandas DataFrame using the `toPandas()` method. Once in Pandas, you can use the built-in methods to export the data to various formats like CSV, Excel, or JSON.
-
-      **4. Workarounds:**
-
-      * **Rerun the query:** Databricks currently doesn't have a built-in solution to fetch all rows in the first run. However, you can work around this by running the same query again. This will fetch the next set of rows (up to 1000 again). You can repeat this process until you have all the data.
-      * **Use external tools:** You can use external tools like `dbfsfs` or `s3fs` to access and download data directly from DBFS or your cloud storage platform.
-
-      Here are some additional resources that you may find helpful:
-
-      * **Databricks Community:** [https://docs.databricks.com/en/sql/language-manual/sql-ref-syntax-qry-select-limit.html](https://docs.databricks.com/en/sql/language-manual/sql-ref-syntax-qry-select-limit.html)
-      * **Stack Overflow:** [https://community.databricks.com/t5/data-engineering/how-to-show-all-rows-by-quot-dataframe-show-quot/td-p/16780](https://community.databricks.com/t5/data-engineering/how-to-show-all-rows-by-quot-dataframe-show-quot/td-p/16780)
-      * **Databricks documentation:** [https://docs.databricks.com/en/dev-tools/sdk-java.html](https://docs.databricks.com/en/dev-tools/sdk-java.html)
-
-      Remember that exporting large datasets can be resource-intensive. Choose the method that best suits your needs and consider the available cluster resources.
-    feedback:
-      rating: good
-      reason: really did a good job understanding the underlying difficulty the user is trying to resolve. This information might have been identified through forum topics, which is not obvious if we just have access to databricks docs.
-- id: 4
-  question: In databricks, is sql serverless available in azure north central us yet?
-  human:
-    - answer: bricky's
-      relevant_source_links:
-        - bricky's
-      adapted_based_on: bricky
-  bricky: 
-    answer: >+
-      You can check if Serverless SQL warehouses are available in the North Central US region by referring to the "Supported regions list" table in the [Azure Databricks regions](https://learn.microsoft.com/en-us/azure/databricks/resources/supported-regions#regions-azure) documentation. According to the table, Serverless SQL warehouses are not excluded from the North Central US region, which means that they should be available there.
-    feedback:
-      rating: good
-      reason: optional
-    source_links:
-      - https://learn.microsoft.com/en-us/azure/databricks/resources/supported-regions
-  gemini_pro: 
-    answer: >+
-      Unfortunately, as of today, December 12, 2023, **Azure SQL serverless is not yet available in the Azure North Central US region**. However, there are a few things to keep in mind:
-
-      * **It is coming soon:** Microsoft has announced that Azure SQL serverless will be rolling out to additional regions soon, including Azure North Central US. The exact date is not yet confirmed, but it is expected to be in the **first half of 2024**.
-      * **You can use other regions:** In the meantime, you can use Azure SQL serverless in other available regions, such as East US, West US, and Central US. These regions are geographically close to Azure North Central US, so you may not experience significant latency issues.
-      * **You can use other serverless options:** If you need serverless functionality in Azure North Central US immediately, you can consider other options, such as Azure Functions or Azure Data Factory with serverless triggers.
-
-      Here is a table showing the current availability of Azure SQL serverless in different regions:
-
-      | Region | Availability |
-      |||
-      | East US | Available |
-      | West US | Available |
-      | Central US | Available |
-      | North Central US | **Coming soon** |
-      | South Central US | Not available |
-      | West US 2 | Available |
-      | East US 2 | Available |
-      | West Europe | Available |
-      | North Europe | Available |
-      | West Central Europe | Available |
-      | Asia Pacific | Available |
-      | Australia | Available |
-      | Canada | Available |
-      | Japan | Available |
-      | Korea | Available |
-      | Brazil | Available |
-
-      I hope this information is helpful. Please let me know if you have any other questions.
-
-      Here are some additional resources that you may find helpful:
-
-      * **Azure SQL serverless documentation:** [https://learn.microsoft.com/en-us/azure/azure-sql/database/serverless-tier-overview?view=azuresql](https://learn.microsoft.com/en-us/azure/azure-sql/database/serverless-tier-overview?view=azuresql)
-      * **Azure Regions:** [https://azure.microsoft.com/en-us/explore/global-infrastructure/geographies/](https://azure.microsoft.com/en-us/explore/global-infrastructure/geographies/)
-      * **Azure SQL serverless roadmap:** [https://learn.microsoft.com/en-us/answers/questions/45189/future-roadmap-for-azure-blob-azure-data-factory-a](https://learn.microsoft.com/en-us/answers/questions/45189/future-roadmap-for-azure-blob-azure-data-factory-a)
-
-      I apologize that I cannot provide an exact date for the availability of Azure SQL serverless in Azure North Central US yet. However, I hope that the information I have provided is helpful for your planning purposes.
-    source_links:
-      - https://learn.microsoft.com/en-us/azure/azure-sql/database/serverless-tier-overview?view=azuresql
-      - https://azure.microsoft.com/en-us/explore/global-infrastructure/geographies/
-      - https://learn.microsoft.com/en-us/answers/questions/45189/future-roadmap-for-azure-blob-azure-data-factory-a
-    feedback:
-      rating: bad
-      reason: wrong context retrieved, not related to databricks
-- id: 5
-  question: Databricks Unity Catalog is said to have no root storage credential. What should I do?
-  human:
-    - answer: gemini's
-      relevant_source_links:
-        - gemini's
-      adapted_based_on: gemini_pro
-  bricky: 
-    answer: >+
-      It sounds like you are encountering an issue with Unity Catalog. Unfortunately, as the Databricks AI Assistant, I do not have access to your specific account information. I recommend reaching out to the Databricks support team for assistance with this issue. You can create a support ticket by clicking on the 'Support' button in the Databricks console or by visiting the Databricks support page.
-    feedback:
-      rating: bad
-      reason: Not providing help. This should be fixed because this is exactly asking for Databricks docs.
-  gemini_pro: 
-    answer: >+
-      When Databricks Unity Catalog says it has no root storage credential, it means that the Unity Catalog cannot access any cloud storage locations. This can happen for several reasons:
-
-      **1. No root credential configured:** By default, Unity Catalog does not have any root storage credential configured. You need to explicitly create a root credential or grant access to existing storage credentials from your cloud provider.
-
-      **2. Permission issues:** Even if a root credential exists, the user or service trying to access data may not have the necessary permissions. Ensure that the user has the `CREATE VOLUME` and `USE SCHEMA` permissions on the schema where the volume will be created, and the `USE CATALOG` permission on its parent catalog. Additionally, for external volumes, the user needs the `CREATE EXTERNAL VOLUME` permission on the external location.
-
-      **3. Connectivity issues:** There might be connectivity issues between Databricks and your cloud storage provider. Check your network settings and firewall rules to ensure proper communication.
-
-      Here are some steps you can take to resolve the "no root storage credential" issue:
-
-      **1. Create a root storage credential:**
-
-      * Go to the Admin Console.
-      * Navigate to **Security > Storage credentials**.
-      * Click on **Create Storage Credential**.
-      * Select your cloud provider and follow the prompts to provide the necessary credentials.
-      * Once created, grant the root storage credential the required permissions on the desired schemas and catalogs.
-
-      **2. Grant access to existing storage credentials:**
-
-      * Identify existing storage credentials that you want to use with Unity Catalog.
-      * Grant the appropriate permissions to the desired users and services.
-      * Make sure the credentials have the necessary access to the desired cloud storage locations.
-
-      **3. Verify permissions:**
-
-      * Double-check that the user or service trying to access data has the required permissions on the schemas, catalogs, and external locations.
-
-      **4. Check connectivity:**
-
-      * Ensure your Databricks workspace can communicate with your cloud storage provider.
-      * Check your network settings and firewall rules for any restrictions.
-
-      **5. Seek support:**
-
-      * If you're still having trouble, contact Databricks support for further assistance.
-
-      Here are some additional resources that you may find helpful:
-
-      * **Databricks documentation on managing external locations and storage credentials:** [https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/manage-external-locations-and-credentials](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/manage-external-locations-and-credentials)
-      * **Databricks community forum thread on the "root storage credential for metastore does not exist" error:** [https://www.youtube.com/watch?v=7BDhpsoyoWQ](https://www.youtube.com/watch?v=7BDhpsoyoWQ)
-
-      Remember, the specific steps to resolve the issue may vary depending on your Databricks configuration and cloud provider. Carefully review the error messages and documentation to identify the root cause and take appropriate action.
-
-    source_links:
-      - https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/manage-external-locations-and-credentials
-      - https://www.youtube.com/watch?v=7BDhpsoyoWQ
-    feedback:
-      rating: good
-      reason: looks good
-- id: 6
-  question: What is the cron syntax to run a job every 15 minutes?
-  human:
-    - answer: placeholder
-      relevant_source_links:
-        - https...
-      adapted_based_on: gemini_pro
-  bricky: 
-    answer: >+
-      To run a job every 15 minutes, you can use the following cron syntax: `*/15 * * * *`. This means that the job will run every 15 minutes, at every hour, every day of the month, every month, and every day of the week. You can find more information about cron syntax in the [Quartz Job Scheduler CronTrigger Tutorial](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html) documentation.
-    feedback:
-      rating: good
-      reason: It's OK, but more introduction for the cron syntax would be ideal.
-    source_links:
-      - https://kb.databricks.com/en_US/single-scheduled-job-tries-to-run-multiple-times
-  gemini_pro: 
-    answer: >+
-      There are two main ways to run a job every 15 minutes using cron syntax:
-
-      **1. Using specific minute values:**
-
-      This method involves specifying each minute at which you want the job to run. For example, to run a job every 15 minutes, you would use the following syntax:
-
-      ```
-      0,15,30,45 * * * *
-      ```
-
-      This syntax means that the job will run at every minute that is a multiple of 15, including 0, 15, 30, and 45.
-
-      **2. Using the wildcard character:**
-
-      You can also use the wildcard character ("*") to specify that the job should run every minute. However, this can be less efficient than using the specific minute values, especially if the job takes a long time to run.
-
-      ```
-      */15 * * * *
-      ```
-
-      This syntax means that the job will run every minute that is a multiple of 15, including all minutes from 1 to 60.
-
-      Here are some additional things to keep in mind when using cron syntax:
-
-      * **The order of the fields is important.** The first field is the minute, the second field is the hour, the third field is the day of the month, the fourth field is the month, and the fifth field is the day of the week.
-      * **You can use wildcards and ranges to specify multiple values.** For example, to run a job every 15 minutes from 9:00 AM to 5:00 PM, you would use the following syntax:
-
-      ```
-      0,15,30,45 9-17 * * *
-      ```
-
-      * **There are many online resources that can help you create cron expressions.** A good place to start is crontab.guru.
-
-      I hope this information helps! Let me know if you have any other questions.
-    feedback:
-      rating: good
-      reason: This answer provides more examples, and helps me understand better about the syntax.
-- id: 7
-  question: question placeholder
-  human:
-    - answer: placeholder
-      relevant_source_links:
-        - https...
-      adapted_based_on: gemini_pro
-  bricky: 
-    answer: >+
-      multipline markdown
-      answer placeholder
-    feedback:
-      rating: good
-      reason: optional
-    source_links:
-      - https://placeholder.optional
-  gemini_pro: 
-    answer: >+
-      multipline markdown
-      answer placeholder
-    source_links:
-      - https://placeholder.optional
-    feedback:
-      rating: good
-      reason: optional
-
+-   trace_id: 0
+    user_input: What is dark mode in databricks?
+    responses:
+    -   responder_name: bricky
+        response_text: >+
+            I'm sorry, but I couldn't find any information related to dark mode
+            in the Databricks documentation. Is there anything else I can help you with?
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: -1
+                reason: Failed to retrieve context.
+                tags: []
+            -   name: answer
+                rating: -1
+                reason: not helpful
+                tags: []
+    -   responder_name: human
+        response_text: >+
+            Databricks dark mode is a color scheme option that switches the
+            interface background from light to dark. This can be beneficial for several reasons:
+            Improved readability: Dark mode can improve readability, especially for users who spend long hours staring at bright screens. The dark background helps reduce eye strain and fatigue, making it easier to focus on the content.
+            Reduced visual noise: By eliminating the bright white background, dark mode reduces visual noise and helps improve concentration. This can be particularly helpful when working with complex data or code.
+            Enhanced aesthetics: Many users simply prefer the look and feel of dark mode. It can create a more modern and professional environment, which can be especially appealing for developers and data analysts.
+            Here is an image of how Databricks looks in dark mode:
+            https://chromewebstore.google.com/detail/azure-databricks-dark-mod/egnimjpijfnhfgikecgkajlkdhghigle?pli=1
+            How to enable dark mode in Databricks:
+            There are two ways to enable dark mode in Databricks:
+            Using the user interface:
+            Open any notebook.
+            Click on the View menu.
+            Select Theme.
+            Choose Dark Theme.
+            Using keyboard shortcut:
+            Press Ctrl + Shift + D (or Cmd + Shift + D on macOS) on your keyboard.
+            Additional benefits of using dark mode:
+            Reduced battery consumption: On devices with OLED screens, dark mode can help save battery life.
+            Reduced eye fatigue: Dark mode can be helpful for people with conditions such as migraines or photophobia.
+            Things to consider before using dark mode:
+            Accessibility: While dark mode can be beneficial for many users, it can also make it difficult for people with visual impairments to see the content. If you have accessibility concerns, you may want to stick with the light theme.
+            Color contrast: Some users may find that the color contrast in dark mode is too low, making it difficult to read the text. If this is the case, you can adjust the color contrast settings in your browser or operating system.
+            Overall, dark mode can be a valuable tool for improving your Databricks experience. Whether you are looking to improve readability, reduce eye strain, or simply prefer the aesthetics, there are many reasons to give dark mode a try.
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 1
+                reason: correct
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []

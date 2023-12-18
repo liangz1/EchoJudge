@@ -47,3 +47,15 @@ echo_judge.persist()
 
 # You can always rerun the alignment loop, and if already aligned, no-op.
 ```
+
+## dev
+
+What is the goal?
+For the yaml component:
+1. convert the usage logs data to yaml
+2. call gemini_pro for all the selected questions
+3. human quickly review them
+
+For the EchoJudge component:
+1. fill in the yaml file with EchoJudge results
+2. Make EchoJudge really can echo human feedback
