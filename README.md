@@ -60,50 +60,13 @@ Requirements for human_feedback.yaml template:
 1. Support all 3 forms of feedback (many fields can be optional though)
 1. Unify Human feedback and AI feedback.
 
-Design for my yaml template
-
-♊️ Prompt to generate the Pydantic code: (Gemini Pro did better than GPT-4)
-```
-Each QAEntry has:
-1. 1 user_input: str, required.
-2. 1 or more response entries ResponseEntry, each has
-    1. responder_name: str, required
-    2. response_text: str, required
-    3. 0 or more Judges, each Judge has
-        1. name: str, "llm_judge" or "human"
-        2. 1 or more Criteria, each has
-            1. name: str, required
-            2. rating: int, required
-            3. reason: str, required
-            4. tags: a list of Tag, where Tag: str
-3. 0 or more RankingPair from a certain judge in the format:
-    1. judge_name: str, required
-    2. candidates: NamedTuple(candidate_1=responder_name_X, candidate_2=responder_name_Y)
-    3. preference: str, value: responder_name_X or responder_name_Y
-```
-
-Example criteria:
-1. answer
-1. retrieval
-1. code_syntax
-1. guardrail
-            
-RAG_app_versions can be:
-`bricky_version1, lakesense_version123, bard_gemini_pro_1201, ChatGPT_GPT4_0612...`
 
 ## EchoJudge
 
 Proposal:
 ```python
 echo_judge = EchoJudge(persist_dir="path/to/dir")
-traces = Trace.from_csv(question_column="col1", answer_column="col2")
-trace = traces[0]
-trace = Trace(question="", answer="")
-trace = echo_judge.evaluate(trace)
-trace.score == -1/ 0/ 1
-trace.reason == "..."
 
-# You can run the loop to make sure the judge converge
 echo_judge.align(trace)
 echo_judge.evaluate(trace)
 
@@ -111,15 +74,3 @@ echo_judge.persist()
 
 # You can always rerun the alignment loop, and if already aligned, no-op.
 ```
-
-## dev
-
-What is the goal?
-For the yaml component:
-1. convert the usage logs data to yaml
-2. call gemini_pro for all the selected questions
-3. human quickly review them
-
-For the EchoJudge component:
-1. fill in the yaml file with EchoJudge results
-2. Make EchoJudge really can echo human feedback
