@@ -1,0 +1,1603 @@
+-   trace_id: 0
+    user_input: pero en lenguaje r
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            Lo siento, parece que me equivoqué en mi respuesta anterior. Para obtener
+            la fecha y hora de la última modificación de una tabla en Databricks utilizando
+            R, puedes utilizar la función `dbutils.fs.ls()` para obtener información
+            sobre el archivo de la tabla y luego extraer la fecha y hora de la última
+            modificación de la información.
+
+
+            Aquí te dejo un ejemplo de cómo hacerlo:
+
+
+            ```R
+
+            # Ruta de la tabla
+
+            ruta_tabla <- "/ruta/a/tu/tabla"
+
+
+            # Obtener información sobre el archivo de la tabla
+
+            info_archivo <- dbutils.fs.ls(ruta_tabla)
+
+
+            # Extraer la fecha y hora de la última modificación
+
+            fecha_modificacion <- info_archivo$modificationTime
+
+
+            print(paste("La tabla fue modificada por última vez en:", fecha_modificacion))
+
+            ```
+
+
+            Ten en cuenta que esta función solo está disponible para tablas que se
+            han creado en Databricks. Si estás utilizando una tabla externa, como
+            una tabla de una base de datos relacional, es posible que esta función
+            no esté disponible.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/sparkr/overview
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer c9011a
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer aa4d8b
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 1
+    user_input: What is the cron syntax to run a job every 15 minutes
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            To run a job every 15 minutes, you can use the following cron syntax:
+            `*/15 * * * *`. This means that the job will run every 15 minutes, at
+            every hour, every day of the month, every month, and every day of the
+            week. You can find more information about cron syntax in the [Quartz Job
+            Scheduler CronTrigger Tutorial](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html)
+            documentation.
+        source:
+        - https://kb.databricks.com/en_US/single-scheduled-job-tries-to-run-multiple-times
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 98cb8d
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer d91c6e
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 2
+    user_input: how can I query data from ibm db2 database
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: "You can use the Databricks SQL Connector for Python, Databricks\
+            \ SQL Driver for Go, Databricks SQL Driver for Node.js, Databricks Driver\
+            \ for SQLTools for Visual Studio Code, pyodbc, Databricks ODBC driver,\
+            \ or Databricks JDBC driver to connect to and run SQL statements and commands\
+            \ from Azure Databricks compute resources. \n\nTo connect to an IBM DB2\
+            \ database, you can use the Databricks JDBC driver. You can download the\
+            \ driver from the [Databricks JDBC driver download page](https://databricks.com/spark/jdbc-drivers-download).\
+            \ Once you have downloaded the driver, you can use it to connect to your\
+            \ IBM DB2 database and run SQL queries. \n\nFor more information about\
+            \ running SQL commands through JDBC or ODBC, see the [JDBC and ODBC configuration\
+            \ guidance](https://docs.databricks.com/integrations/bi/jdbc-odbc-bi.html)."
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/dev-tools/index-driver
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 30fbde
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 6af037
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 3
+    user_input: Is Databricks Runtime the same as Spark?
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            Databricks Runtime includes Apache Spark, but it also adds a number of
+            components and updates that substantially improve the usability, performance,
+            and security of big data analytics. So while Databricks Runtime includes
+            Spark, it is not the same as Spark.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/runtime/index
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer dddf76
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 88faa4
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 4
+    user_input: how to activate databricks assisant
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            To enable Databricks Assistant, an account administrator must log in to
+            the Account Console, click Settings, then click the Feature enablement
+            tab. Finally, toggle Enable third party services for AI assistive features
+            to Enable for all. Once enabled, you can access Databricks Assistant by
+            clicking the Assistant icon in the left sidebar of the notebook, the file
+            editor, or the SQL Editor.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/notebooks/databricks-assistant-faq
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer c4e3d1
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer fc1129
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 5
+    user_input: 'how to active directory '
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: "To use Azure Active Directory (Azure AD) with Databricks,\
+            \ you need to register an Azure AD application and create a service principal.\
+            \ This service principal can then be used to provide access to Azure storage\
+            \ accounts. You can configure access to these service principals using\
+            \ credentials stored with secrets. \n\nDatabricks recommends using Azure\
+            \ Active Directory service principals scoped to clusters or SQL warehouses\
+            \ to configure data access. See [Connect to Azure Data Lake Storage Gen2\
+            \ and Blob Storage](https://learn.microsoft.com/en-us/azure/databricks/storage/azure-storage.html)\
+            \ and [Enable data access configuration](https://learn.microsoft.com/en-us/azure/databricks/sql/admin/data-access-configuration.html)\
+            \ for more information."
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/storage/aad-storage-service-principal
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 9d14bc
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer c60ac6
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 6
+    user_input: power bi
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            To connect Power BI Desktop to Azure Databricks, you can use Partner Connect
+            or connect manually. Partner Connect is a faster way to connect to a cluster
+            or SQL warehouse from Power BI Desktop in just a few clicks. To use Partner
+            Connect, make sure your Azure Databricks account, workspace, and the signed-in
+            user meet the requirements for Partner Connect, then click the Partner
+            Connect button in the sidebar and choose the Power BI tile. In the Connect
+            to partner dialog, choose the name of the Azure Databricks compute resource
+            that you want to connect and download the connection file. Open the downloaded
+            connection file, which starts Power BI Desktop. Enter your authentication
+            credentials and click Connect. Select the Azure Databricks data to query
+            from the Power BI Navigator.
+
+
+            If you prefer to connect manually, follow the instructions in the documentation
+            depending on your chosen authentication method. To connect faster with
+            Power BI Desktop, use Partner Connect.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/partners/bi/power-bi
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer ab0c4a
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 770c4c
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 7
+    user_input: turn on dark mode
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            I'm sorry, but I couldn't find any documentation on how to turn on dark
+            mode in Databricks. However, you can try going to your user settings by
+            clicking on your profile picture in the top right corner of the screen
+            and selecting "User Settings". From there, you can check if there is an
+            option to enable dark mode.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/notebooks/notebooks-code
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer ebc486
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 64496b
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 8
+    user_input: uninstall databricks and remove from path in web terminal
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            To uninstall the Databricks CLI and remove it from the path in the web
+            terminal, you can run the following command:
+
+
+            ```
+
+            databricks unconfigure --token
+
+            ```
+
+
+            This command removes the authentication token and clears the configuration
+            file. If you want to completely remove the CLI, you can also delete the
+            CLI installation directory. The default installation directory is `/usr/local/bin/databricks-cli`.
+            You can delete it by running the following command:
+
+
+            ```
+
+            sudo rm -rf /usr/local/bin/databricks-cli
+
+            ```
+
+
+            Note that you need to use `sudo` to delete the directory because it is
+            owned by the root user.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/dev-tools/cli/databricks-cli
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 47acf8
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 3aec20
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 9
+    user_input: Does Delta Live Tables support Unity Catalog?
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            Yes, Delta Live Tables support for Unity Catalog is in Public Preview.
+            You can use Unity Catalog with your Delta Live Tables pipelines to define
+            a catalog where your pipeline will persist tables and read data from Unity
+            Catalog tables. Your workspace can contain pipelines that use Unity Catalog
+            or the Hive metastore. However, a single pipeline cannot write to both
+            the Hive metastore and Unity Catalog, and existing pipelines cannot be
+            upgraded to use Unity Catalog.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/delta-live-tables/unity-catalog
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer a1c64f
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 941cac
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 10
+    user_input: How to reference?
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            To reference a secret in your notebook or job, you can use the Secrets
+            utility (dbutils.secrets). Here's an example of how to use it:
+
+
+            ```
+
+            # Get the secret value
+
+            dbutils.secrets.get(scope="<scope-name>", key="<secret-name>")
+
+            ```
+
+
+            Replace `<scope-name>` with the name of your secret scope and `<secret-name>`
+            with the name of your secret. This will return the value of the secret,
+            which you can use in your code.
+
+
+            For more information on how to use the Secrets utility, you can refer
+            to the following documentation: https://docs.databricks.com/security/secrets/secret-workflows.html#use-secrets-in-notebooks-and-jobs
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/security/secrets/index
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer cbb072
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer f29d90
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 11
+    user_input: how can i create a sub folder in my database
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            To create a subfolder in your database, you can use the `CREATE DATABASE`
+            command with the `LOCATION` parameter to specify the path of the subfolder.
+            Here's an example:
+
+
+            ```
+
+            CREATE DATABASE my_database.my_subfolder
+
+            LOCATION '/mnt/my_mount_point/my_subfolder'
+
+            ```
+
+
+            This creates a subfolder named `my_subfolder` inside the `my_database`
+            database, with the location set to `/mnt/my_mount_point/my_subfolder`.
+            You can replace these values with your own database name, subfolder name,
+            and location path.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/workflows/jobs/jobs-quickstart
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 8653a9
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 75f480
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 12
+    user_input: how can I import data from SharePoint
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: "You can import data from SharePoint using the Databricks SharePoint\
+            \ connector. The SharePoint connector is a custom connector that you can\
+            \ use to read data from SharePoint lists and document libraries. \n\n\
+            To use the SharePoint connector, you need to first create a SharePoint\
+            \ app registration and grant it permissions to access the SharePoint site\
+            \ and lists that you want to read data from. Once you have created the\
+            \ app registration and granted it permissions, you can use the SharePoint\
+            \ connector to read data from SharePoint lists and document libraries.\n\
+            \nFor more information about using the SharePoint connector, see the [Databricks\
+            \ SharePoint connector documentation](https://docs.databricks.com/data/data-sources/sharepoint/index.html)."
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/external-data/index
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer e979cc
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 69518b
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 13
+    user_input: How does Delta Live Tables work?
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            Delta Live Tables is a declarative framework for building reliable, maintainable,
+            and testable data processing pipelines. Instead of defining your data
+            pipelines using a series of separate Apache Spark tasks, you define streaming
+            tables and materialized views that the system should create and keep up
+            to date. Delta Live Tables manages how your data is transformed based
+            on queries you define for each processing step. You can also enforce data
+            quality with Delta Live Tables expectations, which allow you to define
+            expected data quality and specify how to handle records that fail those
+            expectations. When you trigger an update, Delta Live Tables starts a cluster
+            with the correct configuration, discovers all the tables and views defined,
+            and creates or updates tables and views with the most recent data available.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/delta-live-tables/index
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 0da50a
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer c27e0a
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 14
+    user_input: oracle change data capture
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            Delta Live Tables is a change data capture (CDC) solution for Databricks
+            that allows you to update tables based on changes in source data. Delta
+            Live Tables supports updating tables with slowly changing dimensions (SCD)
+            type 1 and type 2. To perform CDC processing with Delta Live Tables, you
+            first create a streaming table, and then use an `APPLY CHANGES INTO` statement
+            to specify the source, keys, and sequencing for the change feed. For syntax
+            details, see [Change data capture with SQL in Delta Live Tables](https://learn.microsoft.com/en-us/azure/databricks/delta-live-tables/sql-ref.html#cdc)
+            or [Change data capture with Python in Delta Live Tables](https://learn.microsoft.com/en-us/azure/databricks/delta-live-tables/python-ref.html#cdc).
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/delta-live-tables/cdc
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 77ab7a
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 5947c6
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 15
+    user_input: How do I use databricks secrets?
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            To use Databricks secrets, you can store your credentials in a secret
+            scope and reference them in your notebooks and jobs. Here are the steps
+            to set up secrets:
+
+
+            1. Create a secret scope. Secret scope names are case insensitive.
+
+            2. Add secrets to the scope. Secret names are case insensitive.
+
+            3. If you have the Premium plan, assign access control to the secret scope.
+
+
+            You can use the Secrets utility (dbutils.secrets) to reference secrets
+            in notebooks and jobs. For more information, you can refer to the following
+            resources:
+
+
+            - An end-to-end example of how to use secrets in your workflows: https://learn.microsoft.com/en-us/azure/databricks/security/secrets/example-secret-workflow.html
+
+            - Reference for the Databricks CLI tutorial: https://learn.microsoft.com/en-us/azure/databricks/dev-tools/cli/databricks-cli.html
+
+            - Reference for the Secrets API: https://docs.databricks.com/api/azure/workspace/secrets
+
+            - How to use Secrets utility (dbutils.secrets) to reference secrets in
+            notebooks and jobs: https://learn.microsoft.com/en-us/azure/databricks/dev-tools/databricks-utils.html#dbutils-secrets
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/security/secrets/index
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 2894da
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer e1ec3a
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 16
+    user_input: criar uma tabela a partir de arquivos JSON
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: "Para criar uma tabela a partir de arquivos JSON, é necessário\
+            \ utilizar o SerDe JAR. O primeiro passo é baixar o arquivo json-serde-1.3.8-jar-with-dependencies.jar\
+            \ no [link](http://www.congiu.net/hive-json-serde/1.3.8/hdp23/) fornecido\
+            \ na documentação. Em seguida, é preciso instalar o JAR no cluster. Para\
+            \ isso, selecione o cluster na workspace, clique na aba \"Libraries\"\
+            , depois em \"Install new\", selecione \"Upload\" em \"Library Source\"\
+            \ e \"JAR\" em \"Library Type\". Arraste o arquivo json-serde-1.3.8-jar-with-dependencies.jar\
+            \ para a área indicada e clique em \"Install\". \n\nDepois de instalar\
+            \ o JAR, é preciso configurar as propriedades do SerDe na declaração de\
+            \ criação da tabela. O código abaixo é um exemplo de como criar uma tabela\
+            \ a partir de arquivos JSON:\n\n```\n%sql\n\ncreate table <nome-da-tabela>\
+            \ (timestamp_unix string, comments string, start_date string, end_date\
+            \ string)\npartitioned by (yyyy string, mm string, dd string)\nROW FORMAT\
+            \ SERDE 'org.openx.data.jsonserde.JsonSerDe'\nSTORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'\n\
+            OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'\n\
+            LOCATION '<caminho-para-os-arquivos-json>'\n```\n\nPor fim, é necessário\
+            \ executar o comando \"msck repair table <nome-da-tabela>\" para atualizar\
+            \ a tabela."
+        source:
+        - https://kb.databricks.com/en_US/create-table-json-serde
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 4dc168
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 7c6249
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 17
+    user_input: How to reset web terminal?
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            I'm sorry, but the documentation I fetched does not provide information
+            on how to reset the web terminal. However, you can try closing the web
+            terminal panel and reopening it to see if that resolves the issue. If
+            that doesn't work, you can try refreshing the page or logging out and
+            logging back in to your Databricks workspace. If the issue persists, you
+            may need to contact Databricks support for further assistance.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/clusters/web-terminal
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 874155
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 0da460
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 18
+    user_input: Failure starting repl. Try detaching and re-attaching the notebook.
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            I'm sorry, I couldn't find any information in the documentation that directly
+            addresses the issue you're experiencing. However, you can try detaching
+            and re-attaching the notebook as suggested in the error message. This
+            may help resolve the issue. If the problem persists, you can try restarting
+            the cluster or contacting Databricks support for further assistance.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/repos/errors-troubleshooting
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer c7bc1f
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 5140a8
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 19
+    user_input: How can I view cluster metrics in realtime?
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            To view cluster metrics in real-time, you can use the native cluster metrics
+            tool in the Azure Databricks UI. Clusters that use Databricks Runtime
+            13.0 and above have access to these metrics by default. To access the
+            cluster metrics UI, click **Compute** in the sidebar, then click on the
+            compute resource you want to view metrics for, and finally click the **Metrics**
+            tab. Hardware metrics are shown by default. To view Spark metrics, click
+            the dropdown labeled **Hardware** and select **Spark**. You can also select
+            **GPU** if the instance is GPU-enabled. The metrics are collected every
+            minute, and you can filter them by any range of day, hour, or minute from
+            the last 30 days.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/compute/cluster-metrics
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer bfbbcf
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer c1ead7
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 20
+    user_input: Help create a personal access token to cmpute cluster
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            To create a personal access token for a compute cluster in Databricks,
+            you can follow these steps:
+
+
+            1. Click on the "Clusters" icon in the left sidebar of the Databricks
+            workspace.
+
+            2. Select the cluster for which you want to create a personal access token.
+
+            3. Click on the "Edit" button at the top of the cluster details page.
+
+            4. Scroll down to the "Advanced Options" section and click on the "Permissions"
+            tab.
+
+            5. Under "Token Management", click on the "Generate New Token" button.
+
+            6. Enter a name for the token and select the desired expiration time.
+
+            7. Click on the "Generate" button to create the token.
+
+            8. Copy the token value and store it in a secure place.
+
+
+            You can use this personal access token to authenticate with the cluster's
+            REST API or to run Databricks CLI commands. Note that the token is only
+            displayed once, so make sure to copy and store it securely.
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/dev-tools/service-principals
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer b614c3
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer f095d6
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 21
+    user_input: how do i connect to sqlite files?
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            You can use the Databricks SQL Connector for Python to connect to SQLite
+            files. You can find more information about how to use the connector in
+            the [Databricks SQL Connector for Python documentation](https://docs.databricks.com/data/data-sources/sql-databases/sqlite.html#use-the-databricks-sql-connector-for-python).
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/dev-tools/index-driver
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 990aa4
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 951caf
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
