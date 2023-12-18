@@ -12,18 +12,34 @@ Requirements for human_feedback.yaml template:
 1. Support all 3 forms of feedback (many fields can be optional though)
 1. Unify Human feedback and AI feedback.
 
-Design for my yaml template, each entry has:
-1. 1 user input
-1. 1+ responses, each has
-    1. 1 responder (RAG_app_version or human) & their answer
-    1. 1 or 2 judges (llm_judge and/or human), each judge has
-        1. 1+ criteria, each with rating+reason. Example criteria:
-            1. answer
-            1. retrieval
-            1. code_syntax
-            1. guardrail
-    1. 0+ ranking pairs from 1 or 2 judges (llm_judge and/or human) in format: `llm_judge/human: responder1 > responder2`
+Design for my yaml template
 
+♊️ Prompt to generate the Pydantic code: (Gemini Pro did better than GPT-4)
+```
+Each QAEntry has:
+1. 1 user_input: str, required.
+2. 1 or more response entries ResponseEntry, each has
+    1. responder_name: str, required
+    2. response_text: str, required
+    3. 0 or more Judges, each Judge has
+        1. name: str, "llm_judge" or "human"
+        2. 1 or more Criteria, each has
+            1. name: str, required
+            2. rating: int, required
+            3. reason: str, required
+            4. tags: a list of Tag, where Tag: str
+3. 0 or more RankingPair from a certain judge in the format:
+    1. judge_name: str, required
+    2. candidates: NamedTuple(candidate_1=responder_name_X, candidate_2=responder_name_Y)
+    3. preference: str, value: responder_name_X or responder_name_Y
+```
+
+Example criteria:
+1. answer
+1. retrieval
+1. code_syntax
+1. guardrail
+            
 RAG_app_versions can be:
 `bricky_version1, lakesense_version123, bard_gemini_pro_1201, ChatGPT_GPT4_0612...`
 
