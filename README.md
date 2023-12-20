@@ -74,3 +74,9 @@ echo_judge.persist()
 
 # You can always rerun the alignment loop, and if already aligned, no-op.
 ```
+
+Low-hanging fruit
+
+Dataset parser
+
+1. Golden dataset ingestion from csv: The source csv should be allowed to have duplicate records/questions, while the yaml golden dataset may not want to have duplicate records.
