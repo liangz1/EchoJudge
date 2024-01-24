@@ -527,7 +527,7 @@
             the ability to share Databricks notebook files, views, and Unity Catalog
             volumes. See also Share data using the Delta'
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -535,7 +535,13 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Actually, the generated graound truth answer missed the
+                    important word - "also", in "It’s also a great way to securely
+                    share data across different Unity Catalog metastores in your
+                    own Databricks account." Without this word, it's not highlighting
+                    "users in other Databricks accounts" and "across different Unity
+                    Catalog metastores in your own Databricks account". But this is a
+                    minor issue.
                 tags: []
     -   responder_name: directly_answered_by_gpt_35
         response_text: >-
@@ -563,15 +569,21 @@
             integrity and consistency while enabling efficient data sharing and collaboration.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: This is not terribly wrong, but still has some obvious drawbacks.
+                    First, it does not mention "Unity Catalog metastores", but says
+                    "Delta Lake tables", which is not accurate. Second, it does not highlight
+                    "the share recipient doesn't need a token to access the share, and the
+                    provider doesn't need to manage recipient tokens", which is the key point.
+                    Third, hallucination - "data producers can publish Delta Lake tables to a
+                    shared location called a "Delta Sharing Provider."
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -602,14 +614,15 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is even better than the ground truth answer since it has the
+                    "also".
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 200
     user_input: What types of assets can be included in a Delta Sharing share?
     responses:
