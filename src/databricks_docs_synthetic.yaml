@@ -165,15 +165,15 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: This is better than directly_answered_by_gpt_35 since it reduces
-                    hallucination.
+                reason: This is better than the ground truth answer. This is also better
+                    than directly_answered_by_gpt_35 since it reduces hallucination.
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 150
     user_input: What is a share in Delta Sharing?
     responses:
@@ -233,15 +233,18 @@
             across different organizations or platforms.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: It's not wrong, but too general. It does not highlight
+                    "read-only", "notebook files, views, and Unity Catalog volumes
+                    can also be included in a share", which is important for an
+                    informative answer.
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -259,7 +262,7 @@
             metastore, all recipients lose access to it.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -267,14 +270,15 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is as good as the ground truth answer. It's better
+                    than directly_answered_by_gpt_35 since it adds specific details.
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 160
     user_input: What is a recipient in Unity Catalog?
     responses:
