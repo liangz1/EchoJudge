@@ -102,15 +102,22 @@
             and formats.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: It answers with more information from the ground truth
+                    chunk. Weird wording that seems hallucination -
+                    "Delta Lake catalog" (should be Unity Catalog). Also, it does
+                    not mention "It supports some Delta Sharing features that are 
+                    not suppported in the other protocols, including notebook
+                    sharing, Unity Catalog volume sharing, Unity Catalog data
+                    governance, auditing, and usage tracking for both providers
+                    and recipients."
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -150,7 +157,7 @@
             and collaboration options.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -158,7 +165,8 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is better than directly_answered_by_gpt_35 since it reduces
+                    hallucination.
                 tags: []
     preferences:
     -   judge_name: human
