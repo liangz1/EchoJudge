@@ -1,0 +1,582 @@
+,question,answer,chunk,directly_answered_by_gpt35,answered_by_gpt35_with_context
+140,What features does the Delta Sharing server support that are not supported in other protocols?,"The Delta Sharing server, built into Databricks, supports some features that are not supported in other protocols. These features include notebook sharing, Unity Catalog volume sharing, Unity Catalog data governance, auditing, and usage tracking for both providers and recipients. The integration with Unity Catalog simplifies setup and governance for both providers and recipients and improves performance.","uses the Delta Sharing server that is built into Databricks. It supports some Delta Sharing features that are not suppported in the other protocols, including notebook sharing, Unity Catalog volume sharing, Unity Catalog data governance, auditing, and usage tracking for both providers and recipients. The integration with Unity Catalog simplifies setup and governance for both providers and recipients and improves performance. See Share data using the Delta Sharing Databricks-to-Databricks protocol (for providers). The Databricks open sharing protocol, which lets you share tabular data that you manage in a Unity Catalog-enabled Databricks workspace with users on any computing platform. This approach uses the Delta Sharing server that is built into Databricks and is useful when you manage data using Unity Catalog and want to share it with users who don’t use Databricks or don’t have access to a Unity Catalog-enabled Databricks workspace. The integration with Unity Catalog on the provider side simplifies setup and governance for providers. See Share data using the Delta Sharing open sharing protocol (for providers). A customer-managed implementation of the open-source Delta Sharing server, which lets you share from any platform to any platform, whether Databricks or not. The Databricks documentation does not cover instructions for setting up your own Delta Sharing server. See github.com/delta-io/delta-sharing. Shares, providers, and recipients The primary concepts underlying","The Delta Sharing server supports several unique features that are not typically supported in other protocols. These include:
+
+1. Unified Data Access: Delta Sharing enables unified access to data across different data sources and formats, eliminating the need for separate connectors or protocols for each source. It allows users to access a wide range of data formats and sources including data lakes, data warehouses, and other systems.
+
+2. Secure Data Sharing: Delta Sharing provides built-in security mechanisms that ensure secure data sharing. It supports authentication and authorization through integration with existing identity providers, enabling fine-grained access control to data.
+
+3. Query Pushdown: Delta Sharing allows query pushdown, which means that the server can push down the execution of certain operations to the data source itself. This optimizes performance by reducing data movement and processing on the client side.
+
+4. Schema Evolution: Delta Sharing supports schema evolution, allowing the schema of shared data to evolve over time without breaking existing queries or applications. It provides compatibility checks and handles schema evolution seamlessly.
+
+5. Incremental Data Sharing: Delta Sharing supports incremental data sharing, where only the changed or delta data is shared instead of the entire dataset. This reduces data transfer and storage costs, especially for large datasets that are frequently updated.
+
+6. Data Versioning: Delta Sharing maintains version history of shared data, allowing users to access and query past versions of the data. This is particularly useful for auditing, compliance, and data lineage purposes.
+
+7. Data Consistency Guarantees: Delta Sharing ensures strong consistency guarantees for shared data, maintaining the ACID properties (Atomicity, Consistency, Isolation, Durability) during data sharing operations. This ensures data integrity and reliability.
+
+8. Data Catalog Integration: Delta Sharing integrates with data catalogs, such as the Delta Lake catalog, enabling easy discovery and exploration of shared data. It provides metadata about the shared datasets, facilitating data governance and catalog management.
+
+These unique features make Delta Sharing a powerful and versatile protocol for enabling secure and efficient data sharing across different systems and formats.","The Delta Sharing server, built into Databricks, supports some features that are not available in other protocols. These features include:
+
+1. Notebook sharing: The Delta Sharing server allows sharing of notebooks between providers and recipients, enabling collaborative data analysis and exploration.
+
+2. Unity Catalog volume sharing: With the Delta Sharing server, you can share Unity Catalog volumes, which are collections of datasets, with other users or teams. This simplifies data sharing and collaboration within an organization.
+
+3. Unity Catalog data governance: The integration with Unity Catalog enables enhanced data governance capabilities, such as access controls, data lineage tracking, and metadata management, ensuring data integrity and compliance.
+
+4. Auditing: The Delta Sharing server provides auditing functionality, allowing you to track and monitor data sharing activities, including who accessed the data and when.
+
+5. Usage tracking: Both providers and recipients can benefit from usage tracking capabilities offered by the Delta Sharing server. It helps providers understand how their shared data is being utilized, while recipients can track their data consumption and optimize their workflows.
+
+These additional features make the Delta Sharing server a comprehensive solution for data sharing, offering improved setup, governance, performance, and collaboration options."
+150,What is a share in Delta Sharing?,"In Delta Sharing, a share is a read-only collection of tables and table partitions that a provider wants to share with one or more recipients. If the recipient uses a Unity Catalog-enabled Databricks workspace, notebook files, views, and Unity Catalog volumes can also be included in a share. Tables, views, volumes, and notebook files can be added or removed from a share at any time, and data recipient access can be assigned or revoked at any time. In a Unity Catalog-enabled Databricks workspace, a share is a securable object registered in Unity Catalog. If a share is removed from the Unity Catalog metastore, all recipients of that share lose the ability to access it.","documentation does not cover instructions for setting up your own Delta Sharing server. See github.com/delta-io/delta-sharing. Shares, providers, and recipients The primary concepts underlying Delta Sharing in Databricks are shares, providers, and recipients. What is a share? In Delta Sharing, a share is a read-only collection of tables and table partitions that a provider wants to share with one or more recipients. If your recipient uses a Unity Catalog-enabled Databricks workspace, you can also include notebook files, views (including dynamic views that restrict access at the row and column level), and Unity Catalog volumes in a share. You can add or remove tables, views, volumes, and notebook files from a share at any time, and you can assign or revoke data recipient access to a share at any time. In a Unity Catalog-enabled Databricks workspace, a share is a securable object registered in Unity Catalog. If you remove a share from your Unity Catalog metastore, all recipients of that share lose the ability to access it. See Create and manage shares for Delta Sharing. What is a provider? A provider is an entity that shares data with a recipient. If you are a provider and you want to take advantage of the built-in Databricks Delta Sharing server and manage shares and recipients using Unity Catalog, you need at least one Databricks workspace that is enabled for Unity Catalog. You do not need to migrate all of your existing workspaces to Unity Catalog. You can simply create a","In Delta Sharing, a share refers to a unit of data that is made available for consumption by external entities or applications. It represents a specific set of data, such as a table, a database, or a collection of files, that can be accessed by authorized users or systems. Shares in Delta Sharing allow data producers to securely and efficiently share their data with consumers, enabling seamless data exchange and collaboration across different organizations or platforms.","In Delta Sharing, a share is a read-only collection of tables and table partitions that a provider wants to share with one or more recipients. It allows the provider to share data in a controlled and secure manner. Additionally, if the recipient is using a Unity Catalog-enabled Databricks workspace, the share can also include notebook files, views (including dynamic views that restrict access at the row and column level), and Unity Catalog volumes. Providers have the flexibility to add or remove tables, views, volumes, and notebook files from a share at any time. They can also assign or revoke data recipient access to a share as needed. In a Unity Catalog-enabled Databricks workspace, a share is a securable object registered in Unity Catalog. If a share is removed from the Unity Catalog metastore, all recipients lose access to it."
+160,What is a recipient in Unity Catalog?,"A recipient in Unity Catalog is an entity that receives shares from a provider. In Unity Catalog, a share is a securable object that represents an organization and associates it with a credential or secure sharing identifier that allows that organization to access one or more shares. Recipients can have access to multiple shares, and if a provider deletes a recipient from their Unity Catalog metastore, that recipient loses access to all shares it could previously access. This information is important for understanding the sharing and access control mechanisms in Unity Catalog.","using Unity Catalog, you need at least one Databricks workspace that is enabled for Unity Catalog. You do not need to migrate all of your existing workspaces to Unity Catalog. You can simply create a new Unity Catalog-enabled workspace for your Delta Sharing needs. If a recipient is on a Unity Catalog-enabled Databricks workspace, the provider is also a Unity Catalog securable object that represents the provider organization and associates that organization with a set of shares. What is a recipient? A recipient is an entity that receives shares from a provider. In Unity Catalog, a share is a securable object that represents an organization and associates it with a credential or secure sharing identifier that allows that organization to access one or more shares. As a data provider (sharer), you can define multiple recipients for any given Unity Catalog metastore, but if you want to share data from multiple metastores with a particular user or group of users, you must define the recipient separately for each metastore. A recipient can have access to multiple shares. If a provider deletes a recipient from their Unity Catalog metastore, that recipient loses access to all shares it could previously access. See Create and manage data recipients for Delta Sharing. Open sharing versus Databricks-to-Databricks sharing This section describes the two protocols for sharing from a Databricks workspace that is enabled for Unity Catalog. Note This section assumes that the provider is on a","In Unity Catalog, a recipient refers to the entity or individual who receives an in-app purchase or virtual item. This could be a player, user, or any other entity within the Unity game or application. The recipient is the one who benefits from the purchase or receives the virtual item once it is obtained.","In Unity Catalog, a recipient is an entity that receives shares from a provider. A share is a securable object that represents an organization and associates it with a credential or secure sharing identifier that allows that organization to access one or more shares. 
+
+As a data provider (sharer), you can define multiple recipients for any given Unity Catalog metastore. However, if you want to share data from multiple metastores with a particular user or group of users, you must define the recipient separately for each metastore.
+
+A recipient can have access to multiple shares. If a provider deletes a recipient from their Unity Catalog metastore, that recipient loses access to all shares it could previously access."
+170,What is open Delta Sharing?,"Open Delta Sharing allows data providers to share data with users outside of their Databricks workspace, regardless of whether they use Databricks. Data providers generate a token and securely share it with the recipient, who uses the token to authenticate and gain read access to the tables included in the shares. Recipients can access the shared data using various computing tools and platforms, including Databricks, Apache Spark, Pandas, and Power BI. Open Delta Sharing provides a secure way to share data with external users and enables cross-platform data access.","Databricks-to-Databricks sharing This section describes the two protocols for sharing from a Databricks workspace that is enabled for Unity Catalog. Note This section assumes that the provider is on a Unity Catalog-enabled Databricks workspace. To learn about setting up an open-source Delta Sharing server to share from a non-Databricks platform or non-Unity Catalog workspace, see github.com/delta-io/delta-sharing. The way a provider uses Delta Sharing in Databricks depends on who they are sharing data with: Open sharing lets you share data with any user, whether or not they have access to Databricks. Databricks-to-Databricks sharing lets you share data with Databricks users whose workspace is attached to a Unity Catalog metastore that is different from yours. Databricks-to-Databricks also supports notebook and volume sharing, which is not available in open sharing. What is open Delta Sharing? If you want to share data with users outside of your Databricks workspace, regardless of whether they use Databricks, you can use open Delta Sharing to share your data securely. As a data provider, you generate a token and share it securely with the recipient. They use the token to authenticate and get read access to the tables you’ve included in the shares you’ve given them access to. Recipients can access the shared data using many computing tools and platforms, including: Databricks Apache Spark Pandas Power BI For a full list of Delta Sharing connectors and information about how to","Open Delta Sharing is a technology developed by Facebook that enables the secure and efficient sharing of large-scale machine learning (ML) models and data between organizations. It is designed to address the challenges of distributing and collaborating on ML models while ensuring privacy and data protection.
+
+Open Delta Sharing allows organizations to securely share their ML models without the need to expose or transfer the underlying data. Instead, the models are transformed into a compact representation called a ""delta"" that captures the knowledge of the model without revealing sensitive data. This delta can then be shared with other organizations, enabling collaboration and knowledge transfer while maintaining privacy.
+
+By using Open Delta Sharing, organizations can benefit from improved model accuracy, reduced development time, and increased collaboration opportunities. It also provides a privacy-preserving solution by ensuring that sensitive data remains protected throughout the sharing process.","Open Delta Sharing is a protocol that allows you to securely share data with users outside of your Databricks workspace, regardless of whether they use Databricks or not. As a data provider, you generate a token and share it securely with the recipient. The recipient can then use the token to authenticate and gain read access to the tables that you have included in the shares you have given them access to.
+
+This protocol enables recipients to access the shared data using various computing tools and platforms, such as Databricks, Apache Spark, Pandas, Power BI, and more. It provides flexibility and interoperability, allowing data to be accessed and utilized by different systems and applications."
+180,What is Databricks-to-Databricks Delta Sharing?,"Databricks-to-Databricks Delta Sharing allows users to share data with users in other Databricks accounts, whether they're on AWS, Azure, or GCP. It's a great way to securely share data across different Unity Catalog metastores in your own Databricks account. One advantage of Databricks-to-Databricks sharing is that the share recipient doesn't need a token to access the share, and the provider doesn't need to manage recipient tokens. The security of the sharing connection, including all identity verification, authentication, and auditing, is managed entirely through Delta Sharing and the Databricks platform. Additionally, it enables the sharing of Databricks notebook files, views, and Unity Catalog volumes.","can access the shared data using many computing tools and platforms, including: Databricks Apache Spark Pandas Power BI For a full list of Delta Sharing connectors and information about how to use them, see the Delta Sharing documentation. See also Share data using the Delta Sharing open sharing protocol (for providers). What is Databricks-to-Databricks Delta Sharing? If you want to share data with users who have a Databricks workspace that is enabled for Unity Catalog, you can use Databricks-to-Databricks Delta Sharing. Databricks-to-Databricks sharing lets you share data with users in other Databricks accounts, whether they’re on AWS, Azure, or GCP. It’s also a great way to securely share data across different Unity Catalog metastores in your own Databricks account. Note that there is no need to use Delta Sharing to share data between workspaces attached to the same Unity Catalog metastore, because in that scenario you can use Unity Catalog itself to manage access to data across workspaces. One advantage of Databricks-to-Databricks sharing is that the share recipient doesn’t need a token to access the share, and the provider doesn’t need to manage recipient tokens. The security of the sharing connection—including all identity verification, authentication, and auditing—is managed entirely through Delta Sharing and the Databricks platform. Another advantage is the ability to share Databricks notebook files, views, and Unity Catalog volumes. See also Share data using the Delta","Databricks-to-Databricks Delta Sharing is a feature provided by Databricks that allows users to easily share and collaborate on Delta Lake tables across different Databricks workspaces or accounts. It enables users to securely share and access data without the need for data movement or replication.
+
+With Databricks-to-Databricks Delta Sharing, data producers can publish Delta Lake tables to a shared location called a ""Delta Sharing Provider."" These tables can then be accessed by consumers who have access to the provider. Consumers can read, query, and even subscribe to changes in these shared tables, enabling real-time collaboration and data sharing.
+
+This feature provides a unified data sharing experience, allowing different teams or organizations to work with shared data seamlessly. It offers a secure and scalable way to share data without the overhead of data movement, reducing duplication and data inconsistencies.
+
+Databricks-to-Databricks Delta Sharing is built on Delta Lake, which adds reliability and transactional capabilities to data lakes. It ensures data integrity and consistency while enabling efficient data sharing and collaboration.","Databricks-to-Databricks Delta Sharing is a feature that allows you to share data with users in other Databricks accounts. It enables you to securely share data across different Databricks accounts on AWS, Azure, or GCP. This feature is also useful for sharing data across different Unity Catalog metastores within your own Databricks account.
+
+With Databricks-to-Databricks sharing, you don't need to use tokens to access the shared data, and there is no need to manage recipient tokens. The security and management of the sharing connection, including authentication and auditing, are handled by Delta Sharing and the Databricks platform.
+
+Additionally, Databricks-to-Databricks sharing allows you to share Databricks notebook files, views, and Unity Catalog volumes. It provides a convenient and secure way to collaborate and exchange data between different Databricks accounts or within your own account."
+200,What types of assets can be included in a Delta Sharing share?,"The types of assets that can be included in a Delta Sharing share are tables in the Delta or Parquet format, views, Unity Catalog volumes, and notebook files. When sharing with a non-Databricks recipient (open sharing), tables in the Delta or Parquet format can be included. For Databricks-to-Databricks sharing, views, Unity Catalog volumes, and notebook files can also be added to a share. Additionally, a set of token-based credentials is generated for non-Databricks recipients, while no token-based credentials are required for recipients with access to a Databricks workspace enabled for Unity Catalog.","assets registered in the Unity Catalog metastore. If you are sharing with a non-Databricks recipient (known as open sharing) you can include tables in the Delta or Parquet format. If you plan to use Databricks-to-Databricks sharing, you can also add views, Unity Catalog volumes, and notebook files to a share. See Create and manage shares for Delta Sharing. Create a recipient. See Create and manage data recipients for Delta Sharing. If your recipient is not a Databricks user, or does not have access to a Databricks workspace that is enabled for Unity Catalog, you must use open sharing. A set of token-based credentials is generated for that recipient. If your recipient has access to a Databricks workspace that is enabled for Unity Catalog, you can use Databricks-to-Databricks sharing, and no token-based credentials are required. You request a sharing identifier from the recipient and use it to establish the secure connection. Tip Use yourself as a test recipient to try out the setup process. Grant the recipient access to one or more shares. See Grant and manage access to Delta Sharing data shares (for providers). Note This step can also be performed by a non-admin user with the USE SHARE, USE RECIPIENT and SET SHARE PERMISSION privileges. See Unity Catalog privileges and securable objects. Send the recipient the information they need to connect to the share (open sharing only). See Send the recipient their connection information. For open sharing, use a secure channel to send","In a Delta Sharing share, various types of assets can be included. Some of the commonly shared assets include:
+
+1. Tables: Tables are the primary assets that can be shared in Delta Sharing. These can be structured data tables containing rows and columns of information.
+
+2. Databases: Entire databases or specific database tables can be shared through Delta Sharing. This allows sharing of multiple related tables together.
+
+3. Files: Delta Sharing also supports sharing of files. These can be any type of files such as text files, CSV files, Parquet files, or other file formats.
+
+4. Views: Views created on top of tables or databases can be shared as well. Views provide a way to present a customized and filtered version of the data to the recipient.
+
+5. Queries: Instead of sharing the entire dataset, specific queries can be shared. Recipients can execute these queries to retrieve the desired data from the shared dataset.
+
+It is important to note that Delta Sharing focuses on sharing data assets rather than sharing computational resources or executing complex operations on the shared data.","In a Delta Sharing share, you can include various types of assets that are registered in the Unity Catalog metastore. For open sharing with non-Databricks recipients, you can include tables in the Delta or Parquet format. If you plan to use Databricks-to-Databricks sharing, you can additionally add views, Unity Catalog volumes, and notebook files to the share. It means you can share data tables, views, volumes, and notebooks with the recipient."
+590,What is the recommended method for incremental data ingestion in Databricks?,"Databricks recommends using Auto Loader for incremental data ingestion. Auto Loader automatically detects and processes new files as they arrive in cloud object storage. Users or service principals with READ FILES permissions on an external location can use Auto Loader to ingest data. Normally, data will arrive in an external location due to writes from other systems.","Make sure the default language is set to Python. Use the Connect dropdown menu to select the cluster you created in step 1 from the Cluster dropdown. The notebook opens with one empty cell. To learn more about creating and managing notebooks, see Manage notebooks. Step 3: Write and read data from an external location managed by Unity Catalog Databricks recommends using Auto Loader for incremental data ingestion. Auto Loader automatically detects and processes new files as they arrive in cloud object storage. Use Unity Catalog to manage secure access to external locations. Users or service principals with READ FILES permissions on an external location can use Auto Loader to ingest data. Normally, data will arrive in an external location due to writes from other systems. In this demo, you can simulate data arrival by writing out JSON files to an external location. Copy the code below into a notebook cell. Replace the string value for catalog with the name of a catalog with CREATE CATALOG and USE CATALOG permissions. Replace the string value for external_location with the path for an external location with READ FILES, WRITE FILES, and CREATE EXTERNAL TABLE permissions. External locations can be defined as an entire storage container, but often point to a directory nested in a container. The correct format for an external location path is ""s3://bucket-name/path/to/external_location"". external_location = ""<your-external-location>"" catalog = ""<your-catalog>""","The recommended method for incremental data ingestion in Databricks is to use Delta Lake. Delta Lake is an open-source storage layer that provides ACID transactions, scalable metadata handling, and data versioning capabilities on top of Apache Spark.
+
+Delta Lake allows you to efficiently handle change data capture (CDC) scenarios by providing a transactional log that tracks changes made to the data. This log can be used to perform incremental data ingestion by reading only the new or updated records since the last ingestion.
+
+To perform incremental data ingestion using Delta Lake, you can follow these steps:
+
+1. Initialize a Delta Lake table using the existing data.
+2. Write new or updated data to the Delta Lake table using the `merge` operation. The `merge` operation allows you to update existing records or insert new records based on a specified condition.
+3. Use the transaction log to identify the changes made to the table since the last ingestion. This can be done by reading the transaction log using the Delta Lake API.
+4. Process the incremental changes and update downstream systems or perform any required transformations.
+
+By using Delta Lake for incremental data ingestion, you can ensure data consistency, reliability, and scalability in your data pipelines. It also provides the ability to easily roll back to previous versions of the data in case of any issues or errors.",Databricks recommends using Auto Loader for incremental data ingestion. Auto Loader automatically detects and processes new files as they arrive in cloud object storage. It is a convenient and efficient method for continuously ingesting data into your Databricks environment.
+630,How can you schedule a notebook as a task in Databricks?,"To schedule a notebook as a task in Databricks, you can create a new job and trigger it manually. First, click Schedule on the right side of the header bar, then enter a unique name for the Job name and click Manual. Next, select the cluster you created in step 1 from the Cluster drop-down and click Create. After that, in the window that appears, click Run now to trigger the job. To view the job run results, click the icon next to the Last run timestamp. For more information on jobs, you can refer to the Databricks Jobs documentation.","production scripts by adding them as a task in a Databricks job. In this step, you will create a new job that you can trigger manually. To schedule your notebook as a task: Click Schedule on the right side of the header bar. Enter a unique name for the Job name. Click Manual. In the Cluster drop-down, select the cluster you created in step 1. Click Create. In the window that appears, click Run now. To see the job run results, click the icon next to the Last run timestamp. For more information on jobs, see What is Databricks Jobs?. Step 7: Query table from Databricks SQL Anyone with the USE CATALOG permission on the current catalog, the USE SCHEMA permission on the current schema, and SELECT permissions on the table can query the contents of the table from their preferred Databricks API. You need access to a running SQL warehouse to execute queries in Databricks SQL. The table you created earlier in this tutorial has the name target_table. You can query it using the catalog you provided in the first cell and the database with the patern e2e_lakehouse_<your-username>. You can use Catalog Explorer to find the data objects that you created. Additional Integrations Learn more about integrations and tools for data engineering with Databricks: Connect your favorite IDE Use dbt with Databricks Learn about the Databricks Command Line Interface (CLI) Learn about the Databricks Terraform Provider © Databricks 2023. All rights reserved. Apache, Apache Spark, Spark, and the Spark logo are","To schedule a notebook as a task in Databricks, you can follow these steps:
+
+1. Open the notebook that you want to schedule.
+2. Click on the ""Jobs"" button in the menu bar to go to the Jobs page.
+3. Click on the ""Create Job"" button to create a new job.
+4. In the Job form, provide a name for the job and optionally, a description.
+5. Select the notebook that you want to schedule from the ""Notebook Path"" dropdown menu.
+6. Choose the cluster on which you want to run the job from the ""Cluster"" dropdown menu.
+7. Specify the job's schedule by selecting a frequency (e.g., once, hourly, daily, etc.) and providing the appropriate time and date settings.
+8. Configure any job parameters or environment variables as needed.
+9. Set the job's output options, such as whether to overwrite existing notebooks or append to them.
+10. Specify the job's email notification settings, if desired.
+11. Click on the ""Create"" button to create the job.
+
+Once the job is created, it will run automatically based on the specified schedule. You can monitor the job's progress and view its results on the Jobs page in Databricks.","To schedule a notebook as a task in Databricks, you can follow these steps:
+
+1. Open the notebook you want to schedule as a task.
+2. Click on the ""Schedule"" button located on the right side of the header bar.
+3. Provide a unique name for the job.
+4. Select the ""Manual"" option to trigger the job manually.
+5. Choose the cluster you created in Step 1 from the Cluster drop-down menu.
+6. Click on the ""Create"" button.
+7. In the window that appears, you can click on ""Run now"" to execute the job immediately.
+8. To see the results of the job run, you can click on the icon next to the Last run timestamp.
+
+By scheduling a notebook as a task in Databricks, you can automate the execution of your production scripts and ensure they run at specific intervals or on-demand."
+690,What are the considerations when choosing between Auto Loader and COPY INTO for data ingestion in Databricks?,"When choosing between Auto Loader and COPY INTO for data ingestion in Databricks, there are a few considerations to keep in mind. If you're going to ingest files in the order of thousands, you can use COPY INTO. However, if you are expecting files in the order of millions or more over time, it's recommended to use Auto Loader. Auto Loader requires fewer total operations to discover files compared to COPY INTO and can split the processing into multiple batches, making it less expensive and more efficient at scale. These considerations help in determining the most suitable method for data ingestion based on the volume and nature of the data being processed.","Run your first ETL workload on Databricks Load data using streaming tables (Python/SQL notebook) Load data using streaming tables in Databricks SQL Upload local data files or connect external data sources You can securely upload local data files or ingest data from external sources to create tables. See Load data using the add data UI. Load data into Databricks using third-party tools Databricks validates technology partner integrations that enable you to load data into Databricks. These integrations enable low-code, scalable data ingestion from a variety of sources into Databricks. See Technology partners. Some technology partners are featured in Databricks Partner Connect, which provides a UI that simplifies connecting third-party tools to your lakehouse data. COPY INTO COPY INTO allows SQL users to idempotently and incrementally load data from cloud object storage into Delta tables. It can be used in Databricks SQL, notebooks, and Databricks Jobs. When to use COPY INTO and when to use Auto Loader Here are a few things to consider when choosing between Auto Loader and COPY INTO: If you’re going to ingest files in the order of thousands, you can use COPY INTO. If you are expecting files in the order of millions or more over time, use Auto Loader. Auto Loader requires fewer total operations to discover files compared to COPY INTO and can split the processing into multiple batches, meaning that Auto Loader is less expensive and more efficient at scale. If your data schema is","When choosing between Auto Loader and COPY INTO for data ingestion in Databricks, there are several considerations to keep in mind:
+
+1. Data source: Auto Loader is specifically designed to ingest streaming data from cloud storage sources like Azure Blob Storage or AWS S3. On the other hand, COPY INTO is more suitable for batch data ingestion from various sources including cloud storage, SFTP, or on-premises locations.
+
+2. Data volume and velocity: Auto Loader is well-suited for handling high volume and high-velocity streaming data, while COPY INTO is more suitable for batch data ingestion with a relatively lower volume and velocity.
+
+3. Data format: Auto Loader supports only certain file formats like Apache Parquet, Apache Avro, JSON, CSV, and Delta Lake. COPY INTO, on the other hand, supports a wider range of file formats including Parquet, Avro, CSV, JSON, ORC, and more.
+
+4. Data partitioning: Auto Loader automatically partitions the ingested data based on the provided partition configuration, making it easier to query and analyze. COPY INTO can also partition data, but it requires manual configuration.
+
+5. Cost: Auto Loader has a built-in feature called automatic schema evolution, which allows for incremental schema updates without rewriting the entire dataset. This can save storage costs. COPY INTO does not have this feature and requires rewriting the entire dataset for schema updates.
+
+6. Ease of use: Auto Loader simplifies the data ingestion process by automatically discovering new files in the specified location and ingesting them. COPY INTO requires explicit configuration and execution for each ingestion.
+
+7. Data reliability: Auto Loader provides fault-tolerance and guarantees exactly-once semantics for data ingestion, ensuring data integrity. COPY INTO does not provide these guarantees.
+
+Ultimately, the choice between Auto Loader and COPY INTO depends on the specific requirements of the data ingestion process, such as the data source, volume, velocity, format, partitioning needs, cost considerations, and ease of use.","When choosing between Auto Loader and COPY INTO for data ingestion in Databricks, there are a few considerations to keep in mind:
+
+1. File Volume: If you expect to ingest a large number of files in the order of thousands, you can use COPY INTO. On the other hand, if you anticipate millions of files or more over time, it is recommended to use Auto Loader.
+
+2. Scalability: Auto Loader is designed to handle large-scale data ingestion efficiently. It requires fewer total operations to discover files compared to COPY INTO and can split the processing into multiple batches. This makes Auto Loader more cost-effective and efficient at scale.
+
+3. Data Schema: If your data schema remains consistent across all files, both COPY INTO and Auto Loader can be used. However, if you have varying schemas within your files, Auto Loader supports schema evolution, allowing you to handle schema changes seamlessly.
+
+4. Cost and Efficiency: As mentioned earlier, Auto Loader is more cost-effective and efficient at scale due to its ability to process files in multiple batches. It minimizes the number of operations required to discover files, resulting in lower costs and faster ingestion.
+
+In summary, if you have a high volume of files and anticipate scalability challenges, Auto Loader is the recommended choice. However, if you have a smaller number of files and a consistent data schema, COPY INTO can be a suitable option."
+870,What kind of questions can Databricks Lakehouse Monitoring help you answer?,"Databricks Lakehouse Monitoring can help you answer questions related to data integrity, statistical distribution, drift detection, ML model inputs and predictions, model performance trending, and comparison of model versions. It can also help you identify the cause of changes in data distribution or model performance and set up custom metrics for time granularity of observations.","of your data. Monitoring your data provides quantitative measures that help you track and confirm the quality and consistency of your data over time. When you detect changes in your table’s data distribution or corresponding model’s performance, the tables created by Databricks Lakehouse Monitoring can capture and alert you to the change and can help you identify the cause. Databricks Lakehouse Monitoring helps you answer questions like the following: What does data integrity look like, and how does it change over time? For example, what is the fraction of null or zero values in the current data, and has it increased? What does the statistical distribution of the data look like, and how does it change over time? For example, what is the 90th percentile of a numerical column? Or, what is the distribution of values in a categorical column, and how does it differ from yesterday? Is there drift between the current data and a known baseline, or between successive time windows of the data? What does the statistical distribution or drift of a subset or slice of the data look like? How are ML model inputs and predictions shifting over time? How is model performance trending over time? Is model version A performing better than version B? In addition, Databricks Lakehouse Monitoring lets you control the time granularity of observations and set up custom metrics. Requirements The following are required to use Databricks Lakehouse Monitoring: Your workspace must be enabled for Unity","Databricks Lakehouse Monitoring can help answer various questions related to the performance, usage, and health of a data lakehouse. Some examples of questions it can help answer include:
+
+1. How is the overall performance and resource utilization of the data lakehouse?
+2. Are there any bottlenecks or performance issues impacting query execution?
+3. What are the most resource-intensive queries and workloads in the data lakehouse?
+4. How much data is being ingested into the lakehouse, and at what rate?
+5. Are there any data quality issues or anomalies in the lakehouse data?
+6. What is the usage pattern of different tables and datasets in the data lakehouse?
+7. Are there any security or compliance-related concerns in the lakehouse environment?
+8. How is the overall health and availability of the lakehouse infrastructure and components?
+9. Are there any long-running or failed jobs in the data lakehouse deployment?
+10. What are the trends and patterns in the performance and usage metrics of the lakehouse over time?
+
+By providing insights into these aspects, Databricks Lakehouse Monitoring helps organizations optimize and troubleshoot their data lakehouse environment, ensure data quality, and make informed decisions for performance improvement and resource optimization.","Databricks Lakehouse Monitoring can help you answer various questions related to data integrity, data distribution, drift analysis, ML model performance, and more. Some examples of the questions it can help answer include:
+
+1. What is the fraction of null or zero values in the current data, and has it increased?
+2. What is the statistical distribution of the data, and how does it change over time? For example, what is the 90th percentile of a numerical column?
+3. How does the distribution of values in a categorical column differ from previous time periods?
+4. Is there any drift between the current data and a known baseline or between successive time windows of the data?
+5. What does the statistical distribution or drift of a specific subset or slice of the data look like?
+6. How are the inputs and predictions of ML models shifting over time?
+7. How is the performance of ML models trending over time?
+8. Is one version of a model performing better than another version?
+
+In addition to these predefined questions, Databricks Lakehouse Monitoring also allows you to set up custom metrics and control the time granularity of observations to address specific monitoring requirements."
+880,What types of analysis does Databricks Lakehouse Monitoring provide?,"Databricks Lakehouse Monitoring provides the following types of analysis: time series, snapshot, and inference. Time series analysis compares data distributions across time windows, allowing users to specify the granularities over which to calculate metrics. Snapshot analysis monitors how the full contents of the table change over time, calculating metrics over all data in the table. Inference analysis is used to monitor the performance of a machine learning model by attaching the monitor to an inference table that holds the model's inputs and corresponding predictions.","you control the time granularity of observations and set up custom metrics. Requirements The following are required to use Databricks Lakehouse Monitoring: Your workspace must be enabled for Unity Catalog and you must have access to Databricks SQL. Only Delta managed tables, external tables, views, materialized views, and streaming tables are supported for monitoring. Materialized views and streaming tables do not support incremental processing. Note Databricks Lakehouse Monitoring uses serverless jobs compute. For information about tracking Lakehouse Monitoring expenses, see View Lakehouse Monitoring expenses. How Lakehouse Monitoring works on Databricks To monitor a table in Databricks, you create a monitor attached to the table. To monitor the performance of a machine learning model, you attach the monitor to an inference table that holds the model’s inputs and corresponding predictions. Databricks Lakehouse Monitoring provides the following types of analysis: time series, snapshot, and inference. Profile type Description Time series Compares data distributions across time windows. You specify the granularities over which to calculate metrics (for example, 1 day) to compare how your data distribution changes over time. This type of profile requires a timestamp column. Snapshot In contrast to time series, a snapshot profile monitors how the full contents of the table change over time. Metrics are calculated over all data in the table, and monitor the table state at each","Databricks Lakehouse Monitoring provides various types of analysis, including:
+
+1. Performance Monitoring: It enables monitoring of the overall performance of the Databricks Lakehouse platform, including query execution times, resource utilization, and system metrics.
+
+2. Workload Analysis: It allows analyzing the workload patterns and resource usage of different queries and jobs running on the Lakehouse platform. This helps identify bottlenecks, tune performance, and optimize resource allocation.
+
+3. Query Execution Analysis: It provides detailed analysis of individual query executions, including query plans, execution statistics, and data access patterns. This helps identify inefficient queries, optimize data access, and improve query performance.
+
+4. Data Quality Analysis: It enables monitoring and analysis of data quality metrics, such as data completeness, consistency, and accuracy. This helps identify data issues and take corrective actions to ensure data integrity.
+
+5. Cost Optimization Analysis: It allows analyzing the cost implications of different workloads and resource utilization patterns. This helps identify cost-saving opportunities, optimize resource allocation, and manage cloud costs effectively.
+
+6. Security and Compliance Analysis: It provides visibility into access patterns, user activities, and data usage to ensure compliance with security policies and regulatory requirements. This helps identify potential security risks and enforce data governance practices.
+
+Overall, Databricks Lakehouse Monitoring offers a comprehensive set of analysis capabilities to monitor, optimize, and secure the Lakehouse platform and its data workloads.","Databricks Lakehouse Monitoring provides three types of analysis: time series, snapshot, and inference.
+
+1. Time series analysis: This type of analysis compares data distributions across time windows. You can specify the granularities (such as 1 day) over which to calculate metrics. It helps you understand how your data distribution changes over time. To use time series analysis, you need a timestamp column in your table.
+
+2. Snapshot analysis: In contrast to time series analysis, snapshot analysis monitors how the full contents of the table change over time. Metrics are calculated over all the data in the table, providing insights into the table's state at each point in time.
+
+3. Inference analysis: This analysis is specifically designed for monitoring the performance of machine learning models. You attach the monitor to an inference table that holds the model's inputs and corresponding predictions. Inference analysis helps you track the accuracy and quality of your model's predictions over time.
+
+These different types of analysis enable you to gain valuable insights into the behavior and performance of your data and machine learning models within the Databricks Lakehouse environment."
+890,What is the purpose of a baseline table in Databricks Lakehouse Monitoring?,"The purpose of a baseline table in Databricks Lakehouse Monitoring is to use it as a reference for measuring drift or the change in values over time. It is useful when you have a sample of what you expect your data to look like, and drift is then computed relative to expected data values and distributions. The baseline table should contain a dataset that serves as a reference for measuring changes in the primary table over time.","In contrast to time series, a snapshot profile monitors how the full contents of the table change over time. Metrics are calculated over all data in the table, and monitor the table state at each time the monitor is refreshed. Inference A table containing predicted values output by a machine learning classification or regression model. This table includes a timestamp, a model ID, model inputs (features), a column containing model predictions, and optional columns containing unique observation IDs and ground truth labels. It may also contain metadata, such as demographic information, that is not used as input to the model but might be useful for fairness and bias investigations or other monitoring. An inference profile is similar to a time series profile but also includes model quality metrics. This section briefly describes the input tables used by Databricks Lakehouse Monitoring and the metric tables it produces. The diagram shows the relationship between the input tables, the metric tables, the monitor, and the dashboard. Primary table and baseline table In addition to the table to be monitored, called the “primary table”, you can optionally specify a baseline table to use as a reference for measuring drift, or the change in values over time. A baseline table is useful when you have a sample of what you expect your data to look like. The idea is that drift is then computed relative to expected data values and distributions. The baseline table should contain a dataset that","The purpose of a baseline table in Databricks Lakehouse Monitoring is to store and track the performance metrics of a system over a specific period of time. It serves as a reference point or benchmark to compare the current performance of the system against historical data.
+
+By storing baseline metrics such as CPU usage, memory usage, query execution time, and other relevant metrics, the baseline table allows users to easily monitor and analyze the performance of their Lakehouse system. It helps in identifying any deviations from the expected or desired performance, enabling proactive monitoring and troubleshooting.
+
+The baseline table can also be used for capacity planning, trend analysis, and identifying patterns or anomalies in the system's behavior. It provides valuable insights into the overall health and performance of the Lakehouse environment, facilitating informed decision-making and optimization efforts.","The purpose of a baseline table in Databricks Lakehouse Monitoring is to provide a reference point for measuring drift or changes in values over time. A baseline table contains a dataset that represents what you expect your data to look like. By comparing the primary table, which is the table being monitored, to the baseline table, you can measure the extent to which the data has deviated from the expected values and distributions. This helps in identifying any anomalies or unexpected changes in the data, allowing you to assess the quality and stability of your data over time."
+1010,What are the AI functions provided by Databricks for SQL users?,"Databricks provides AI functions that SQL data analysts can use to access LLM models, including from OpenAI, directly within their data pipelines and workflows. These AI functions allow SQL users to leverage high-quality generative AI models without maintaining their own model deployment. The AI functions on Databricks enable developers to quickly and easily build applications that utilize a high-quality generative AI model.","Using Foundation Model APIs, developers can quickly and easily build applications that leverage a high-quality generative AI model without maintaining their own model deployment. For SQL users, Databricks provides AI functions that SQL data analysts can use to access LLM models, including from OpenAI, directly within their data pipelines and workflows. See AI Functions on Databricks. Databricks Runtime for Machine Learning Databricks Runtime for Machine Learning (Databricks Runtime ML) automates the creation of a cluster with pre-built machine learning and deep learning infrastructure including the most common ML and DL libraries. For the full list of libraries in each version of Databricks Runtime ML, see the release notes. To access data in Unity Catalog for machine learning workflows, the access mode for the cluster must be single user (assigned). Shared clusters are not compatible with Databricks Runtime for Machine Learning. In addition, Databricks Runtime ML is not supported on TableACLs clusters or clusters with spark.databricks.pyspark.enableProcessIsolation config set to true. Create a cluster using Databricks Runtime ML When you create a cluster, select a Databricks Runtime ML version from the Databricks runtime version drop-down menu. Both CPU and GPU-enabled ML runtimes are available. If you select a cluster from the drop-down menu in the notebook, the Databricks Runtime version appears at the right of the cluster name: If you select a GPU-enabled ML runtime, you","Databricks provides several AI functions for SQL users. Some of the AI functions provided by Databricks include:
+
+1. Machine Learning: Databricks offers a unified analytics platform that integrates with popular machine learning libraries such as TensorFlow, PyTorch, and scikit-learn. Users can leverage these libraries to build and train machine learning models directly within Databricks.
+
+2. Deep Learning: Databricks supports deep learning frameworks like TensorFlow and PyTorch, allowing SQL users to build and train deep neural networks for various tasks such as image classification, natural language processing, and time series analysis.
+
+3. Natural Language Processing (NLP): Databricks provides NLP libraries and tools such as spaCy, NLTK, and gensim that enable SQL users to perform text analysis, sentiment analysis, named entity recognition, and other NLP tasks.
+
+4. Image Processing: Databricks integrates with popular image processing libraries like OpenCV and scikit-image, allowing SQL users to perform various image processing tasks such as image classification, object detection, and image segmentation.
+
+5. Distributed Computing: Databricks leverages distributed computing capabilities to accelerate AI workloads. SQL users can take advantage of distributed computing frameworks like Apache Spark to process large datasets and scale their AI workflows.
+
+6. Feature Engineering: Databricks provides SQL users with tools and libraries for feature engineering, which involves transforming raw data into meaningful features for machine learning models. Users can perform tasks such as feature extraction, feature selection, and feature scaling using these tools.
+
+7. Model Deployment: Databricks allows SQL users to deploy their trained machine learning models as production-ready applications. These models can be deployed as RESTful APIs or integrated into real-time data pipelines for inference and predictions.
+
+Overall, Databricks offers a comprehensive suite of AI functions for SQL users, enabling them to leverage the power of AI and machine learning within their SQL workflows.","Databricks provides AI functions for SQL users that allow them to access Language Model (LLM) models, including those from OpenAI, directly within their data pipelines and workflows. These AI functions can be used by SQL data analysts to leverage high-quality generative AI models without the need to maintain their own model deployment. These functions are available through Databricks Runtime for Machine Learning (Databricks Runtime ML) and can be used to perform various AI tasks within SQL queries."
+1050,What kinds of data assets are shared on Databricks Marketplace?,"Databricks Marketplace shares various data assets, including datasets, Databricks notebooks, Databricks Solution Accelerators, and machine learning (AI) models. The datasets are typically available as catalogs of tabular data, while the Solution Accelerators are accessible as clonable Git repos. These assets provide data consumers with a wide range of resources to explore and expand their access to the data and data services they need.","Documentation What is Databricks Marketplace? What is Databricks Marketplace? This article introduces Databricks Marketplace, an open forum for exchanging data products. Databricks Marketplace takes advantage of Delta Sharing to give data providers the tools to share data products securely and data consumers the power to explore and expand their access to the data and data services they need. What kinds of data assets are shared on Databricks Marketplace? Marketplace assets include datasets, Databricks notebooks, Databricks Solution Accelerators, and machine learning (AI) models. Datasets are typically made available as catalogs of tabular data. Solution Accelerators are made available as clonable Git repos. How do consumers get access to data in Databricks Marketplace? To find a data product you want on the Databricks Marketplace, simply browse or search provider listings. You can browse: The Open Marketplace, which does not require access to a Databricks workspace. The Databricks Marketplace on your Databricks workspace. Just click Marketplace. To request access to data products in the Marketplace, you must use the Marketplace on a Databricks workspace. You do not need a Databricks workspace to access and work with data once it is shared, although using a Databricks workspace with Unity Catalog enabled lets you take advantage of the deep integration of Unity Catalog with Delta Sharing. Some data products are available to everyone in the public marketplace, and others are","Databricks Marketplace is a platform that allows users to discover, share, and deploy various types of data assets. Some of the common data assets shared on Databricks Marketplace include:
+
+1. Datasets: Users can find and access curated datasets from various domains such as finance, healthcare, retail, and more. These datasets can be used for analysis, machine learning, and other data-driven tasks.
+
+2. Notebooks: Users can share Jupyter notebooks or Databricks notebooks that contain code, visualizations, and explanations for specific data analysis or machine learning tasks. These notebooks can serve as examples or templates for others to learn from or build upon.
+
+3. Models: Trained machine learning models can be shared on the marketplace. These models can be used by others to make predictions or perform specific tasks without the need for training from scratch.
+
+4. Libraries and packages: Users can share custom libraries, packages, or code snippets that provide additional functionality or solve specific data processing or analytics challenges.
+
+5. Workflows and pipelines: Users can share workflows or data pipelines that automate specific data processing tasks, making it easier for others to replicate or build upon existing workflows.
+
+6. Visualizations and dashboards: Pre-built visualizations or interactive dashboards can be shared on the marketplace. These can be used to explore and present data insights in an easy-to-understand manner.
+
+7. MLflow experiments: Users can share MLflow experiments and their associated machine learning models. This allows others to reproduce, compare, and enhance existing experiments.
+
+These are just a few examples of the types of data assets shared on Databricks Marketplace. The marketplace aims to provide a wide range of resources that enable users to accelerate their data analysis, machine learning, and AI workflows.","On Databricks Marketplace, various types of data assets are shared. These include datasets, Databricks notebooks, Databricks Solution Accelerators, and machine learning (AI) models. Datasets are typically catalogs of tabular data, while Solution Accelerators are clonable Git repositories. These assets allow data providers to share their data products securely and enable data consumers to explore and expand their access to the data and data services they need."
+1200,How do I read binary files using Databricks Runtime?,"To read binary files using Databricks Runtime, you can use the binary file data source. This data source converts each file into a single record that contains the raw content and metadata of the file. The produced DataFrame includes columns such as `path`, `modificationTime`, `length`, and `content`. Additionally, you can specify the data source format as `binaryFile` to read binary files. An example of reading binary files is shown below:
+
+```python
+# Read binary files
+
+# Specify the data source format as binaryFile
+
+# Load binary files
+
+df = spark.read.format(""binaryFile"").load(""path_to_files"")
+
+# Display the DataFrame
+
+display(df) # image thumbnails are rendered in the ""content"" column
+```","Binary file ============= Databricks Runtime supports the binary file data source, which reads binary files and converts each file into a single record that contains the raw content and metadata of the file. The binary file data source produces a DataFrame with the following columns and possibly partition columns: * `path (StringType)` : The path of the file. * `modificationTime (TimestampType)` : The modification time of the file. In some Hadoop FileSystem implementations, this parameter might be unavailable and the value would be set to a default value. * `length (LongType)` : The length of the file in bytes. * `content (BinaryType)` : The contents of the file. To read binary files, specify the data source `format` as `binaryFile` . Images -------- Databricks recommends that you use the binary file data source to load image data. The Databricks `display` function supports displaying image data loaded using the binary data source. If all the loaded files have a file name with an image extension , image preview is automatically enabled: ```python df = spark.read.format(""binaryFile"").load("""") display(df) # image thumbnails are rendered in the ""content"" column ``` !image preview Alternatively, you can force the image preview functionality by using the `mimeType` option with a string value `""image/*""` to annotate the binary column. Images are decoded based on their format information in the binary content. Supported image types are `bmp` , `gif` , `jpeg` , and `png` .","To read binary files using Databricks Runtime, you can use the `spark.read` API with the `binaryFiles` method. Here's an example:
+
+```python
+# Import the necessary libraries
+from pyspark.sql import SparkSession
+
+# Create a SparkSession
+spark = SparkSession.builder.getOrCreate()
+
+# Read binary files from a directory
+binary_files = spark.read.binaryFiles(""/path/to/binary/files"")
+
+# Display the content of binary files
+binary_files.show()
+```
+
+In the above example, `/path/to/binary/files` should be replaced with the actual path to your binary files directory. The `binaryFiles` method reads the binary files as a binary stream and returns a DataFrame with two columns: `path` (the file path) and `content` (the binary content of the file).
+
+You can further process the binary files DataFrame as per your requirements using Spark DataFrame operations.","To read binary files using Databricks Runtime, you can use the binary file data source. Here's an example of how to do it:
+
+```
+df = spark.read.format(""binaryFile"").load(""/path/to/binary/files"")
+```
+
+In the above code, replace `/path/to/binary/files` with the actual path to your binary files. This will load the binary files and create a DataFrame with the columns `path`, `modificationTime`, `length`, and `content`.
+
+To display image data loaded using the binary data source, you can use the `display` function:
+
+```
+display(df)
+```
+
+If all the loaded files have a file name with an image extension, image preview is automatically enabled and image thumbnails are rendered in the ""content"" column. Alternatively, you can force the image preview functionality by using the `mimeType` option with a string value `""image/*""` to annotate the binary column.
+
+Supported image types for image preview are `bmp`, `gif`, `jpeg`, and `png`."
+4650,How do I schedule a query execution in Azure Databricks?,"To schedule a query execution in Azure Databricks, you can use scheduled query executions to update your dashboards or enable routine alerts. By default, queries do not have a schedule. To set the schedule, you can go to the Query Editor, click **Schedule** > **Add schedule** to open a menu with schedule settings. Then, choose when to run the query by specifying the frequency, period, starting time, and time zone using the dropdown pickers. Additionally, you can select **More options** to show optional settings such as a name for the schedule and a SQL warehouse to power the query. Finally, click **Create** and the query will run automatically according to the schedule.","Schedule a query ================== You can use scheduled query executions to update your dashboards or enable routine alerts. By default, your queries do not have a schedule. Note If an alert uses your query, the alert runs on its own refresh schedule and does not use the query schedule. To set the schedule: 1. In the Query Editor, click **Schedule** > **Add schedule** to open a menu with schedule settings. !Schedule interval 2. Choose when to run the query. 	* Use the dropdown pickers to specify the frequency, period, starting time, and time zone. Optionally, select the 	 **Show cron syntax** 	 checkbox to edit the schedule in 	 Quartz Cron Syntax 	 . 	* Choose 	 **More options** 	 to show optional settings. You can also choose: 		+ A name for the schedule. 		+ A SQL warehouse to power the query. By default, the SQL warehouse used for ad hoc query execution is also used for a scheduled job. Use this optional setting to select a different warehouse to run the scheduled query. 3. Click **Create** . Your query will run automatically according to the schedule. If you experience a scheduled query not executing according to its schedule, you should manually trigger the query to make sure it doesn’t fail. If a query execution fails during a scheduled run, Azure Databricks retries with a back-off algorithm. This means that retries happen less frequently as failures persist. With persistent failures, the next retry might exceed the scheduled interval. After you create a schedule,","To schedule a query execution in Azure Databricks, you can follow these steps:
+
+1. Open your Azure Databricks notebook and write the query that you want to schedule for execution.
+
+2. Click on the ""Schedule"" button located at the top-right corner of the notebook interface.
+
+3. In the ""New Job"" dialog box, provide a name for your job in the ""Job Name"" field.
+
+4. Choose the cluster on which you want to run the job from the ""Cluster"" drop-down menu.
+
+5. Specify the frequency at which you want to run the job using the ""Frequency"" drop-down menu. You can choose options like daily, hourly, or custom.
+
+6. Set the start time and end time for the job execution using the ""Start Time"" and ""End Time"" fields respectively.
+
+7. In the ""Command"" text box, paste the query that you want to schedule for execution.
+
+8. Click on the ""Create"" button to create the scheduled job.
+
+Once the job is created, it will run automatically based on the specified schedule. You can view the execution history and manage the job from the Azure Databricks job interface.","To schedule a query execution in Azure Databricks, follow these steps:
+
+1. In the Query Editor, click on **Schedule** and then select **Add schedule** from the dropdown menu.
+2. This will open a menu with schedule settings. Choose when you want the query to run.
+   - Use the dropdown pickers to specify the frequency, period, starting time, and time zone.
+   - If you want to edit the schedule using Quartz Cron Syntax, you can select the **Show cron syntax** checkbox.
+   - You can also choose **More options** to show additional settings such as a name for the schedule and selecting a specific SQL warehouse to power the query.
+3. After specifying the schedule settings, click on **Create**.
+4. Your query will now run automatically according to the schedule you set.
+
+It's important to note that if an alert uses the same query, the alert will run on its own refresh schedule and not use the query schedule. Additionally, if a scheduled query fails to execute according to its schedule, you should manually trigger the query to ensure it doesn't fail. Azure Databricks will automatically retry failed query executions with a back-off algorithm, but persistent failures may cause the next retry to exceed the scheduled interval."
+4680,How do I add a user to an Azure Databricks workspace?,"To add a user to an Azure Databricks workspace, the administrator needs to follow these steps: 1. Go to the admin settings page. 2. Click on the **Identity and access** tab. 3. Next to **Users**, click **Manage**. 4. Click **Add User**. 5. Enter the user email ID. The user must belong to the Microsoft Entra ID (formerly Azure Active Directory) tenant of the Azure Databricks workspace. After adding the user, click the **Databricks SQL access** checkbox and then click **Confirm** to grant the user access to the workspace.","Set up a user to query a table ================================ This article shows how an administrator can add a user, create a table containing 10 million people records from a Databricks dataset , and allow a user to access the table. Next, it shows how the user can run a query and view the query runtime details. Important Data access control is *always enabled* in Databricks SQL, which means that users must always be granted access to data. Requirements -------------- * You must be an Azure Databricks workspace admin. Step 1: Add a user -------------------- 1. Go to the admin settings page . 2. Click on the **Identity and access** tab. 3. Next to **Users** , click **Manage** . 4. Click **Add User** . 5. Enter the user email ID. You can add any user who belongs to the Microsoft Entra ID (formerly Azure Active Directory) tenant of your Azure Databricks workspace. The examples in this article assume the user is `user@example.com` . !Add user 6. Click **OK** . The user is added to the workspace. 7. Click the **Databricks SQL access** checkbox. !Added user 8. Click **Confirm** . Step 2: Create a table of 10 million people --------------------------------------------- 1. Click **New** in the sidebar and select **Query** . 2. In the drop-box at the left, select a SQL warehouse, such as **Starter Warehouse** . 3. Paste the following in the SQL editor: ```sql CREATE TABLE default.people10m OPTIONS (PATH 'dbfs:/databricks-datasets/learning-spark-v2/people/people-10m.delta') ```","To add a user to an Azure Databricks workspace, you need to follow these steps:
+
+1. Go to the Azure portal (https://portal.azure.com) and navigate to your Azure Databricks workspace.
+2. In the Azure Databricks workspace overview page, click on ""Access control (IAM)"" in the left-hand menu.
+3. Click on the ""+ Add"" button to add a new user.
+4. In the ""Add permissions"" panel, select the role that you want to assign to the user. The available roles are Owner, Contributor, and Reader. The Contributor role provides full access to the workspace, while the Reader role has read-only access.
+5. In the ""Add members"" section, enter the email address or the Azure Active Directory (AAD) user or group name of the user you want to add. You can also select users from the directory by clicking on the ""Select"" button.
+6. Click on the ""Save"" button to add the user to the Azure Databricks workspace.
+
+Once the user is added, they will receive an email invitation to join the workspace. They can accept the invitation and sign in using their Azure AD credentials.","To add a user to an Azure Databricks workspace, follow these steps:
+
+1. Go to the admin settings page of your Azure Databricks workspace.
+2. Click on the **Identity and access** tab.
+3. Next to **Users**, click **Manage**.
+4. Click **Add User**.
+5. Enter the user's email ID. You can add any user who belongs to the Microsoft Entra ID (formerly Azure Active Directory) tenant of your Azure Databricks workspace. For example, you can enter `user@example.com`.
+6. Click **OK**. The user will be added to the workspace.
+7. Optionally, you can enable Databricks SQL access for the user by checking the **Databricks SQL access** checkbox.
+8. Click **Confirm** to save the changes.
+
+Once the user has been added, they will have access to the Azure Databricks workspace and can perform tasks according to their assigned role and permissions."
+4730,How do I create a visualization in Databricks SQL using a SQL query?,"To create a visualization in Databricks SQL using a SQL query, you can follow these steps:
+1. Run the following query in the SQL editor:
+```sql
+USE CATALOG SAMPLES;
+SELECT hour(tpep_dropoff_datetime) as dropoff_hour, COUNT(*) AS num FROM samples.nyctaxi.trips WHERE pickup_zip IN ({{pickupzip}}) GROUP BY 1
+```
+2. After running the query, in the **Results** panel, click **+** and then select **Visualization**.
+3. In the **Visualization Type** drop-down, choose **Bar**.
+4. Enter a visualization name, such as **Dropoff Rates**.
+5. Review the visualization properties.
+6. Click **Save**.","Visualization in Databricks SQL ================================= Azure Databricks has built-in support for charts and visualizations in both Databricks SQL and in notebooks. This page describes how to work with visualizations in Databricks SQL. For information about using visualizations in notebooks, see Visualizations in Databricks notebooks . To view the types of visualizations, see visualization types . Important For information about a preview version of Azure Databricks charts, see preview chart visualizations . Create a visualization ------------------------ 1. Run the following query in SQL editor. ```sql USE CATALOG SAMPLES; SELECT hour(tpep_dropoff_datetime) as dropoff_hour, COUNT(*) AS num FROM samples.nyctaxi.trips WHERE pickup_zip IN ({{pickupzip}}) GROUP BY 1 ``` !Add visualization 2. After running a query, in the **Results** panel, click **+** and then select **Visualization** . 3. In the **Visualization Type** drop-down, choose **Bar** . 4. Enter a visualization name, such as **Dropoff Rates** . 5. Review the visualization properties. !Configure chart 6. Click **Save** . Visualization tools --------------------- If you hover over the top right of a chart in the visualization editor, a Plotly toolbar displays where you can perform operations such as select, zoom, and pan. !Plotly toolbar If you do not see the toolbar, your administrator has disabled toolbar display for your Databricks SQL instance. Temporarily hide or show only a series","To create a visualization in Databricks SQL using a SQL query, you can follow these steps:
+
+1. Open the Databricks SQL interface and navigate to the notebook or workspace where you want to create the visualization.
+
+2. Write a SQL query that retrieves the data you want to visualize. Make sure the query returns the necessary columns for your visualization.
+
+3. Execute the SQL query by running the cell or code block containing the query.
+
+4. Once the query has executed and returned the results, click on the ""Chart"" button located above the query results.
+
+5. Select the appropriate chart type from the available options, such as bar chart, line chart, pie chart, etc.
+
+6. Customize the visualization by selecting the desired columns for the x-axis, y-axis, labels, legends, and any other relevant options.
+
+7. Click on the ""Apply"" or ""Create"" button to generate the visualization.
+
+8. The visualization will be displayed below the query results in the notebook or workspace. You can interact with it, zoom in/out, and download it if needed.
+
+Note: Databricks SQL also provides additional features and functionalities for advanced visualizations, such as using Python libraries like Matplotlib or Seaborn. These may require additional setup and code integration.","To create a visualization in Databricks SQL using a SQL query, you can follow these steps:
+
+1. Run the desired SQL query in the SQL editor. For example:
+
+```sql
+USE CATALOG SAMPLES;
+SELECT hour(tpep_dropoff_datetime) as dropoff_hour, COUNT(*) AS num
+FROM samples.nyctaxi.trips
+WHERE pickup_zip IN ({{pickupzip}})
+GROUP BY 1
+```
+
+2. After running the query, in the **Results** panel, click the **+** button and select **Visualization**.
+
+3. In the **Visualization Type** drop-down, choose the type of visualization you want to create, such as **Bar**.
+
+4. Enter a name for your visualization, like **Dropoff Rates**.
+
+5. Review the visualization properties and make any necessary adjustments.
+
+6. Click **Save** to create the visualization.
+
+You can then interact with the visualization in the visualization editor using tools like the Plotly toolbar, which allows you to perform operations like selection, zooming, and panning. Note that if you don't see the toolbar, it may have been disabled by your Databricks SQL administrator."
+4760,How do I implement a UserDefinedAggregateFunction in Scala for Apache Spark SQL?,"To implement a UserDefinedAggregateFunction in Scala for Apache Spark SQL, you can create a class that extends UserDefinedAggregateFunction. This class should override inputSchema, bufferSchema, dataType, deterministic, initialize, and update methods. The inputSchema method defines the input fields for the aggregate function, while the bufferSchema method defines the internal fields for computing the aggregate. The dataType method specifies the output type of the aggregation function, and the deterministic method indicates whether the function is deterministic. The initialize method sets the initial value for the buffer schema, and the update method updates the buffer schema given an input.","User-defined aggregate functions - Scala ========================================== This article contains an example of a UDAF and how to register it for use in Apache Spark SQL. See User-defined aggregate functions (UDAFs) for more details. Implement a `UserDefinedAggregateFunction` --------------------------------------------- ```scala import org.apache.spark.sql.expressions.MutableAggregationBuffer import org.apache.spark.sql.expressions.UserDefinedAggregateFunction import org.apache.spark.sql.Row import org.apache.spark.sql.types._ class GeometricMean extends UserDefinedAggregateFunction { // This is the input fields for your aggregate function. override def inputSchema: org.apache.spark.sql.types.StructType = StructType(StructField(""value"", DoubleType) :: Nil) // This is the internal fields you keep for computing your aggregate. override def bufferSchema: StructType = StructType( StructField(""count"", LongType) :: StructField(""product"", DoubleType) :: Nil ) // This is the output type of your aggregatation function. override def dataType: DataType = DoubleType override def deterministic: Boolean = true // This is the initial value for your buffer schema. override def initialize(buffer: MutableAggregationBuffer): Unit = { buffer(0) = 0L buffer(1) = 1.0 } // This is how to update your buffer schema given an input. override def update(buffer: MutableAggregationBuffer, input: Row): Unit = { buffer(0) = buffer.getAsLong + 1 buffer(1) = buffer.getAsDouble * input.getAsDouble }","To implement a UserDefinedAggregateFunction (UDAF) in Scala for Apache Spark SQL, you need to follow these steps:
+
+1. Import the necessary Spark SQL classes:
+```scala
+import org.apache.spark.sql.expressions.{MutableAggregationBuffer, UserDefinedAggregateFunction}
+import org.apache.spark.sql.types._
+```
+
+2. Extend the UserDefinedAggregateFunction class and override its methods:
+```scala
+class MyUDAF extends UserDefinedAggregateFunction {
+
+  // Define the input schema for the UDAF
+  def inputSchema: StructType = StructType(StructField(""input"", DoubleType) :: Nil)
+
+  // Define the buffer schema for intermediate values
+  def bufferSchema: StructType = StructType(StructField(""sum"", DoubleType) :: StructField(""count"", LongType) :: Nil)
+
+  // Define the output schema of the UDAF
+  def dataType: DataType = DoubleType
+
+  // Define whether the UDAF is deterministic or not
+  def deterministic: Boolean = true
+
+  // Initialize the buffer values
+  def initialize(buffer: MutableAggregationBuffer): Unit = {
+    buffer(0) = 0.0 // sum
+    buffer(1) = 0L  // count
+  }
+
+  // Update the buffer values with each input
+  def update(buffer: MutableAggregationBuffer, input: Row): Unit = {
+    if (!input.isNullAt(0)) {
+      buffer(0) = buffer.getDouble(0) + input.getDouble(0) // sum
+      buffer(1) = buffer.getLong(1) + 1L                    // count
+    }
+  }
+
+  // Merge intermediate buffer values
+  def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = {
+    buffer1(0) = buffer1.getDouble(0) + buffer2.getDouble(0) // sum
+    buffer1(1) = buffer1.getLong(1) + buffer2.getLong(1)     // count
+  }
+
+  // Calculate the final result
+  def evaluate(buffer: Row): Any = {
+    buffer.getDouble(0) / buffer.getLong(1) // average
+  }
+}
+```
+
+3. Register the UDAF with Spark SQL:
+```scala
+val myUDAF = new MyUDAF()
+spark.udf.register(""my_udaf"", myUDAF)
+```
+
+4. Use the UDAF in your Spark SQL queries:
+```scala
+val df = spark.range(1, 100).toDF(""value"")
+df.createOrReplaceTempView(""my_table"")
+spark.sql(""SELECT my_udaf(value) FROM my_table"").show()
+```
+
+In the above example, the UDAF calculates the average of a column named ""value"" in the ""my_table"" DataFrame. You can modify the UDAF implementation to perform different aggregations based on your requirements.","To implement a `UserDefinedAggregateFunction` in Scala for Apache Spark SQL, you need to extend the `UserDefinedAggregateFunction` class and override its methods. Here's an example:
+
+```scala
+import org.apache.spark.sql.expressions.MutableAggregationBuffer
+import org.apache.spark.sql.expressions.UserDefinedAggregateFunction
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.types._
+
+class GeometricMean extends UserDefinedAggregateFunction {
+  // This is the input fields for your aggregate function.
+  override def inputSchema: org.apache.spark.sql.types.StructType =
+    StructType(StructField(""value"", DoubleType) :: Nil)
+
+  // This is the internal fields you keep for computing your aggregate.
+  override def bufferSchema: StructType = StructType(
+    StructField(""count"", LongType) ::
+    StructField(""product"", DoubleType) :: Nil
+  )
+
+  // This is the output type of your aggregation function.
+  override def dataType: DataType = DoubleType
+
+  override def deterministic: Boolean = true
+
+  // This is the initial value for your buffer schema.
+  override def initialize(buffer: MutableAggregationBuffer): Unit = {
+    buffer(0) = 0L // count
+    buffer(1) = 1.0 // product
+  }
+
+  // This is how to update your buffer schema given an input.
+  override def update(buffer: MutableAggregationBuffer, input: Row): Unit = {
+    buffer(0) = buffer.getAs[Long](0) + 1
+    buffer(1) = buffer.getAs[Double](1) * input.getAs[Double](0)
+  }
+
+  // This is how to merge two objects with the bufferSchema type.
+  override def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = {
+    buffer1(0) = buffer1.getAs[Long](0) + buffer2.getAs[Long](0)
+    buffer1(1) = buffer1.getAs[Double](1) * buffer2.getAs[Double](1)
+  }
+
+  // This is where you output the final value, given the final value of your bufferSchema.
+  override def evaluate(buffer: Row): Any = {
+    math.pow(buffer.getDouble(1), 1.toDouble / buffer.getLong(0))
+  }
+}
+```
+
+In this example, we create a `GeometricMean` class that extends `UserDefinedAggregateFunction`. We override several methods to define the input schema, buffer schema, data type, and behavior of the aggregation function.
+
+To use this `UserDefinedAggregateFunction`, you need to register it with Spark SQL. Here's an example of how to register and use it:
+
+```scala
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.functions._
+
+val spark = SparkSession.builder()
+  .appName(""UDAFExample"")
+  .master(""local"")
+  .getOrCreate()
+
+// Register the UDAF
+val geometricMean = new GeometricMean()
+spark.udf.register(""geometric_mean"", geometricMean)
+
+// Use the UDAF in a SQL query
+val df = spark.range(1, 10).toDF(""value"")
+df.createOrReplaceTempView(""myTable"")
+
+spark.sql(""SELECT geometric_mean(value) AS result FROM myTable"").show()
+```
+
+In this example, we register the `GeometricMean` UDAF as a function named ""geometric_mean"" using `spark.udf.register()`. Then, we can use the UDAF in a SQL query by calling the registered function."
+4770,How do I register the UDAF with Spark SQL?,"To register the UDAF with Spark SQL, you can use the following Scala code:
+
+```scala
+spark.udf.register(""gm"", new GeometricMean)
+```
+This code registers the UDAF with the name ""gm"" and the instance of the GeometricMean class. After registering, you can use the UDAF in your Spark SQL queries and DataFrame operations.","your buffer schema given an input. override def update(buffer: MutableAggregationBuffer, input: Row): Unit = { buffer(0) = buffer.getAsLong + 1 buffer(1) = buffer.getAsDouble * input.getAsDouble } // This is how to merge two objects with the bufferSchema type. override def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = { buffer1(0) = buffer1.getAsLong + buffer2.getAsLong buffer1(1) = buffer1.getAsDouble * buffer2.getAsDouble } // This is where you output the final value, given the final value of your bufferSchema. override def evaluate(buffer: Row): Any = { math.pow(buffer.getDouble(1), 1.toDouble / buffer.getLong(0)) } } ``` Register the UDAF with Spark SQL ---------------------------------- ```scala spark.udf.register(""gm"", new GeometricMean) ``` Use your UDAF --------------- ```scala // Create a DataFrame and Spark SQL table import org.apache.spark.sql.functions._ val ids = spark.range(1, 20) ids.createOrReplaceTempView(""ids"") val df = spark.sql(""select id, id % 3 as group_id from ids"") df.createOrReplaceTempView(""simple"") ``` ```sql -- Use a group_by statement and call the UDAF. select group_id, gm(id) from simple group by group_id ``` ```scala // Or use DataFrame syntax to call the aggregate function. // Create an instance of UDAF GeometricMean. val gm = new GeometricMean // Show the geometric mean of values of column ""id"". df.groupBy(""group_id"").agg(gm(col(""id"")).as(""GeometricMean"")).show() // Invoke the UDAF by its assigned name.","To register a User-Defined Aggregate Function (UDAF) with Spark SQL, you need to follow these steps:
+
+1. Create a class that extends the `UserDefinedAggregateFunction` abstract class. This class represents the UDAF and defines the logic for initialization, updating, merging, and finalizing the aggregation.
+
+```scala
+import org.apache.spark.sql.expressions.{MutableAggregationBuffer, UserDefinedAggregateFunction}
+import org.apache.spark.sql.types.{DataType, LongType, StructType}
+import org.apache.spark.sql.Row
+
+class MyUDAF extends UserDefinedAggregateFunction {
+  // Define the input schema
+  def inputSchema: StructType = ???
+
+  // Define the buffer schema
+  def bufferSchema: StructType = ???
+
+  // Define the output data type
+  def dataType: DataType = ???
+
+  // Define whether the UDAF is deterministic or not
+  def deterministic: Boolean = ???
+
+  // Initialize the buffer
+  def initialize(buffer: MutableAggregationBuffer): Unit = ???
+
+  // Update the buffer based on a new input row
+  def update(buffer: MutableAggregationBuffer, input: Row): Unit = ???
+
+  // Merge two buffer values together
+  def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = ???
+
+  // Calculate the final result of the aggregation
+  def evaluate(buffer: Row): Any = ???
+}
+```
+
+2. Implement the methods of the `UserDefinedAggregateFunction` abstract class to define the input schema, buffer schema, output data type, determinism, initialization, updating, merging, and finalization logic.
+
+3. Register the UDAF with Spark SQL by calling the `register` method on a `SparkSession` object.
+
+```scala
+val spark = SparkSession.builder
+  .appName(""UDAF Example"")
+  .getOrCreate()
+
+val myUDAF = new MyUDAF()
+spark.udf.register(""my_udaf"", myUDAF)
+```
+
+4. Now, you can use the registered UDAF in Spark SQL queries.
+
+```scala
+val df = spark.read.table(""my_table"")
+df.createOrReplaceTempView(""my_table_view"")
+
+val result = spark.sql(""SELECT my_udaf(column) FROM my_table_view"")
+result.show()
+```
+
+Replace `""my_udaf""` with the desired name for your UDAF, and replace `""column""` with the column on which you want to apply the UDAF in your query.
+
+That's it! You have successfully registered and used a UDAF with Spark SQL.","To register the UDAF with Spark SQL, you can follow the steps below:
+
+1. Create an instance of your UDAF class. For example, if your UDAF class is named `GeometricMean`, you can create an instance like this: `val gm = new GeometricMean`.
+
+2. Use the `register` method of the `udf` object in Spark SQL to register the UDAF. Pass in a name for the UDAF and the instance of your UDAF class. For example: `spark.udf.register(""gm"", gm)`.
+
+After registering the UDAF, you can use it in your SQL queries or DataFrame operations by referencing the name you assigned during registration."

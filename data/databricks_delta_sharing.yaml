@@ -1,0 +1,209 @@
+-   trace_id: 0
+    user_input: pero en lenguaje r
+    responses:
+    -   responder_name: bricky@conversation_2023-11-09_04.24.44Z_master_0bcac98e_1863716079
+        response_text: >-
+            Lo siento, parece que me equivoqué en mi respuesta anterior. Para obtener
+            la fecha y hora de la última modificación de una tabla en Databricks utilizando
+        source:
+        - https://learn.microsoft.com/en-us/azure/databricks/sparkr/overview
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            placeholder
+
+            answer 9b0134
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 6f017d
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
+-   trace_id: 1
+    user_input: What is Delta Sharing and how does it enable secure data sharing?
+    responses:
+    -   responder_name: liang.zhang@
+        response_text: >-
+            Delta Sharing is an open protocol developed by Databricks for secure data sharing
+            with other organizations or teams within your organization, regardless of the
+            computing platforms they use. It allows users of any table registered in Unity Catalog
+            to share data securely. Delta Sharing enables secure data sharing by providing a
+            protocol for sharing data with other organizations or teams, ensuring data security
+            and compatibility across different computing platforms. It is designed to facilitate
+            secure data sharing and collaboration while maintaining data governance and security
+            standards.
+        source:
+        -   URL: data-governance/index.html
+            chunks:
+            - >-
+                Delta Sharing is an open protocol developed by Databricks for secure data sharing
+                with other organizations or teams within your organization, regardless of the
+                computing platforms they use. It allows users of any table registered in Unity
+                Catalog to share data securely. Delta Sharing enables secure data sharing by providing
+                a protocol for sharing data with other organizations or teams, ensuring data security
+                and compatibility across different computing platforms. It is designed to facilitate
+                secure data sharing and collaboration while maintaining data governance and security
+                standards.
+        gradings:
+        -   judge_name: liang.zhang@
+            criteria:
+            -   name: retrieval
+                rating: 1
+                reason: the correct doc is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: the answer is concise and correct
+                tags: []
+    -   responder_name: gemini_pro
+        response_text: >-
+            ## Delta Sharing: Secure Data Sharing Across Platforms
+
+            Delta Sharing is an **open protocol** developed by Databricks for **securely sharing data
+            with other organizations**, regardless of the computing platforms they use. It essentially
+            allows you to share a slice of your data, like a table or partition, while keeping the full
+            dataset under your control.
+
+            Here's how it enables secure data sharing:
+
+            **1. Access Control:**
+
+            * **Fine-grained permissions:** You can control who can access your data by setting read-only
+              permissions for specific users or groups, ensuring unauthorized access is blocked.
+            * **Identity and authentication:**  Delta Sharing integrates with authentication systems like
+              Azure Active Directory and Okta, ensuring trusted access and auditability.
+
+            **2. Data Isolation:**
+
+            * **Read-only shares:** Recipients can only view and analyze the shared data, not modify it.
+              This protects your original dataset from accidental or malicious changes.
+            * **Secure storage:** The data stays in your cloud storage (like S3, ADLS, or GCS), encrypted
+              at rest and in transit.
+
+            **3. Open Protocol:**
+
+            * **Platform agnostic:** Recipients can access your data through various tools and platforms, 
+              like pandas, Apache Spark, and others, without needing to use your specific software.
+              This promotes broader collaboration and analysis.
+            * **Open source implementation:** The protocol is publicly available and open-source,
+              fostering adoption and trust.
+
+            **Benefits of using Delta Sharing:**
+
+            * **Faster collaboration:** Simplify data sharing with partners and external stakeholders,
+              facilitating quicker insights and improved decision-making.
+            * **Reduced costs:** Eliminate the need for data replication and unnecessary infrastructure
+              setups, saving resources.
+            * **Enhanced security:** Maintain control over your data while providing secure access to
+              authorized users.
+            * **Increased data utilization:** Make your data more valuable by empowering others to analyze
+              and leverage it in different ways.
+
+            In summary, Delta Sharing offers a secure and efficient way to share data with anyone,
+            regardless of their platform, while keeping your original dataset safe and under your control.
+            This open approach promotes collaboration and unlocks the full potential of data analysis across
+            different organizations.
+
+            I hope this explanation helps! Feel free to ask any further questions you might have about Delta Sharing.
+        source:
+        -   URL: https://www.databricks.com/blog/2021/05/26/introducing-delta-sharing-an-open-protocol-for-secure-data-sharing.html
+            chunks:
+            - >-
+                Today, we’re launching a new open source project that simplifies cross-organization sharing:
+                Delta Sharing, an open protocol for secure real-time exchange of large datasets, which enables
+                secure data sharing across products for the first time.
+            - >-
+                Benefits of the design
+                The Delta Sharing design provides many benefits for both providers and consumers:
+                Data Providers can easily share an entire table, or just one version or partition of the table,
+                because clients are only given access to a specific subset of the objects in it.
+        -   URL: https://learn.microsoft.com/en-us/azure/databricks/data-sharing/
+            chunks:
+            - >-
+                Delta Sharing is also available as an open-source project that you can use to share Delta
+                tables from other platforms.
+        -   URL: https://github.com/delta-io/delta-sharing
+            chunks:
+            - >-
+                Delta Sharing is an open protocol for secure real-time exchange of large datasets, which
+                enables organizations to share data in real time regardless of which computing platforms they use.
+            - >-
+                With Delta Sharing, a user accessing shared data can directly connect to it through pandas,
+                Tableau, Apache Spark, Rust, or other systems that support the open protocol, without
+                having to deploy a specific compute platform first.
+        gradings:
+        -   judge_name: liang.zhang@
+            criteria:
+            -   name: retrieval
+                rating: 1
+                reason: The retrieved docs contains the necessary information for answering the question
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: it's a pretty thorough answer
+                tags: []
+    -   responder_name: gpt_4
+        response_text: >-
+            placeholder
+
+            answer 6f017d
+        source:
+        - (placeholder) https://github.com/liangz1/EchoJudge/tree/main
+        gradings:
+        -   judge_name: human
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: helpful
+                tags: []
+    preferences:
+    -   judge_name: human
+        candidates:
+            candidate_1: (placeholder) bot_v1
+            candidate_2: (placeholder) bot_v2
+        preferred_candidate: (placeholder) bot_v1
