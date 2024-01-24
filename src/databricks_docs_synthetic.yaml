@@ -445,15 +445,16 @@
             data remains protected throughout the sharing process.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: This is completely wrong. It's hallucination.
+                    It should not say "a technology developed by Facebook".
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -471,7 +472,7 @@
             data to be accessed and utilized by different systems and applications.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -479,14 +480,15 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: It's a bit wordy than the ground truth answer, but it's
+                    still a good answer.
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 180
     user_input: What is Databricks-to-Databricks Delta Sharing?
     responses:
