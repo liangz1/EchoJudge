@@ -1049,15 +1049,17 @@
             multiple batches, meaning that Auto Loader is less expensive and more
             efficient at scale. If your data schema is'
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
-                reason: we don't know what is retrieved
+                reason: Ground-truth context is provided, but the last sentence is
+                    truncated.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise, and easy to read. But may not be complete
+                    since the chunk is truncated.
                 tags: []
     -   responder_name: directly_answered_by_gpt_35
         response_text: >-
@@ -1110,15 +1112,15 @@
             and ease of use.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: Number 2 is correct, but other bullet points seems hallucinated.
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -1155,22 +1157,22 @@
             be a suitable option.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This seems correct, also mentioning the schema part where it is truncated.
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 870
     user_input: What kind of questions can Databricks Lakehouse Monitoring help you
         answer?
