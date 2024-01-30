@@ -2059,15 +2059,16 @@
             \ failures, the next retry might exceed the scheduled interval. After\
             \ you create a schedule,"
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: It contains basic information, but hard to read since the format
+                    is not clear. Also, The first two sentences are not necessary.
                 tags: []
     -   responder_name: directly_answered_by_gpt_35
         response_text: >-
@@ -2111,15 +2112,16 @@
             Azure Databricks job interface.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: Plausible hallucination. Not helpful. Should not say "Cluster",
+                    since the SQL queries are running on a serverless SQL warehouse.
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -2153,22 +2155,23 @@
             interval.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Great answer! It's a good reformatting and rephrasing of the
+                    ground-truth context.
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 4680
     user_input: How do I add a user to an Azure Databricks workspace?
     responses:
