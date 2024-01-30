@@ -1503,15 +1503,17 @@
             to expected data values and distributions. The baseline table should contain
             a dataset that
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided. But the last sentence is truncated.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct and easy to read. However, the last sentence is not necessary
+                    "The baseline table should contain a dataset that serves as a reference for
+                    measuring changes in the primary table over time."
                 tags: []
     -   responder_name: directly_answered_by_gpt_35
         response_text: >-
@@ -1534,15 +1536,15 @@
             environment, facilitating informed decision-making and optimization efforts.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: Hallucinated answer. Not helpful.
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -1556,22 +1558,23 @@
             allowing you to assess the quality and stability of your data over time.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided. But the last sentence is truncated.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise, and easy to read. It also does not include the
+                    unnecessary last sentence, thus better than the ground-truth answer.
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 1010
     user_input: What are the AI functions provided by Databricks for SQL users?
     responses:
