@@ -2208,15 +2208,16 @@
             OPTIONS (PATH ''dbfs:/databricks-datasets/learning-spark-v2/people/people-10m.delta'')
             ```'
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided. But the last sentence is truncated.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Mostly correct, missed a "click **OK**" step, but it's minor. The format is
+                    not very easy to read.
                 tags: []
     -   responder_name: directly_answered_by_gpt_35
         response_text: >-
@@ -2251,15 +2252,16 @@
             Azure AD credentials.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: This is totally wrong. It should not say "Azure portal". It's
+                    not about adding a user to Azure, it's about adding a user to Azure Databricks.
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -2290,22 +2292,23 @@
             workspace and can perform tasks according to their assigned role and permissions.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Great answer! It's a good reformatting and rephrasing of the
+                    ground-truth context.
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 4730
     user_input: How do I create a visualization in Databricks SQL using a SQL query?
     responses:
