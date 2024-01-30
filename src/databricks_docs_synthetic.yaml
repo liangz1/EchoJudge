@@ -780,15 +780,15 @@
             an external location path is "s3://bucket-name/path/to/external_location".
             external_location = "<your-external-location>" catalog = "<your-catalog>"'
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise, and easy to read.
                 tags: []
     -   responder_name: directly_answered_by_gpt_35
         response_text: >-
@@ -828,15 +828,16 @@
             in case of any issues or errors.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: The answer is wrong. It should not say "Delta Lake". It should
+                    say "Auto Loader".
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -846,22 +847,25 @@
             ingesting data into your Databricks environment.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is correct. This is as good as the ground truth answer.
+                    It does not include the last two sentences in the ground truth answer,
+                    because the last two sentences are not necessary, but still relevant
+                    and helpful. So there is nothing wrong to exclude or include them.
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 630
     user_input: How can you schedule a notebook as a task in Databricks?
     responses:
