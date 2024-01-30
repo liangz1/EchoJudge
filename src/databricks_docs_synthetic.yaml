@@ -1609,15 +1609,15 @@
             Runtime version appears at the right of the cluster name: If you select
             a GPU-enabled ML runtime, you'
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise, and easy to read.
                 tags: []
     -   responder_name: directly_answered_by_gpt_35
         response_text: >-
@@ -1673,15 +1673,15 @@
             within their SQL workflows.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: hallucinated answer. Not helpful.
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -1694,22 +1694,25 @@
             and can be used to perform various AI tasks within SQL queries.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: Good overall, but it's not clear from the ground-truth context that
+                    the AI functions are available through Databricks Runtime ML. Might be
+                    partially hallucinated. But apparently better than the directly answered
+                    answer.
                 tags: []
     preferences:
-    -   judge_name: human
+    -   judge_name: liang.zhang@
         candidates:
-            candidate_1: (placeholder) bot_v1
-            candidate_2: (placeholder) bot_v2
-        preferred_candidate: (placeholder) bot_v1
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
 -   trace_id: 1050
     user_input: What kinds of data assets are shared on Databricks Marketplace?
     responses:
