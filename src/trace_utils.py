@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, validator
-from typing import ClassVar, List
+from typing import List, Optional
 import ast
 import pandas as pd
 import uuid
@@ -39,8 +39,7 @@ class Criterion(BaseModel):
 class Grading(BaseModel):
     judge_name: str = Field(
         ...,
-        description="Name of the judge (ai or human)",
-        pattern="ai|human"
+        description="Name of the judge (ai or human)"
     )
     criteria: List[Criterion] = Field(..., description="List of criteria evaluated by the judge")
     
@@ -80,7 +79,6 @@ class Preference(BaseModel):
     judge_name: str = Field(
         ...,
         description="Name of the judge (ai or human)",
-        pattern="ai|human"
     )
     candidates: CandidatePair
     preferred_candidate: str
@@ -155,7 +153,73 @@ class Trace(BaseModel):
             ],
         )
 
-class BrickyEvaluationDataset(BaseModel):
+
+class Traces(BaseModel):
+    traces: List[Trace] = Field(description="List of Traces", default=[])
+
+    def write_to_yaml_file(self, path: str):
+        traces_for_dump = [t.dict_for_yaml_print() for t in self.traces]
+        with open(path, "w") as f:
+            f.write(yaml.dump(
+                traces_for_dump, 
+                sort_keys=False, 
+                allow_unicode=True, 
+                indent=4,
+                default_flow_style=False,
+            ))
+
+    @classmethod
+    def load_from_yaml_file(cls, path: str):
+        with open(path, "r") as file:
+            data = yaml.safe_load(file)
+        dataset = cls()
+        dataset.traces = [Trace.from_dict(d) for d in data]
+        return dataset
+    
+    def count(self):
+        return len(self.traces)
+    
+    def avg_score(self, *, responder_name: str, judge_name: str, criterion: str):
+        scores = []
+        for trace in self.traces:
+            for response in trace.responses:
+                if response.responder_name == responder_name:
+                    for grading in response.gradings:
+                        if grading.judge_name == judge_name:
+                            for c in grading.criteria:
+                                if c.name == criterion:
+                                    scores.append(c.rating)
+        return sum(scores) / len(scores)
+    
+    def select(self, *, 
+               responder_name: Optional[str] = None,
+               judge_name: Optional[str] = None,
+               criterion: Optional[str] = None,
+               rating: Optional[int] = None,
+               preferred_candidate: Optional[str] = None):
+        selected_traces = []
+        if responder_name and judge_name and criterion and rating is not None:
+            # Filter based on responder_name, judge_name, criterion, and rating
+            for trace in self.traces:
+                for response in trace.responses:
+                    if (response.responder_name == responder_name and
+                        any(grading.judge_name == judge_name and
+                            any(c.name == criterion and c.rating == rating for c in grading.criteria)
+                            for grading in response.gradings)):
+                        selected_traces.append(trace)
+        elif judge_name and preferred_candidate:
+            # Filter based on judge_name and preferred_candidate
+            for trace in self.traces:
+                for preference in trace.preferences:
+                    if preference.judge_name == judge_name and preference.preferred_candidate == preferred_candidate:
+                        selected_traces.append(trace)
+        else:
+            raise ValueError("Invalid combination of arguments")
+
+        return Traces(traces=selected_traces)
+
+
+class BrickyEvaluationDataset(Traces):
     """
     # Usage in notebook
     # importlib.reload(trace_utils)
@@ -167,7 +231,6 @@ class BrickyEvaluationDataset(BaseModel):
     # loaded_dataset = BrickyEvaluationDataset.load_from_yaml_file()
     # loaded_dataset.traces[21]
     """
-    traces: List[Trace] = Field(description="List of Traces", default=[])
     
     def add_traces_from_usage_log_csv(self, path):
         df = pd.read_csv(path)
@@ -183,26 +246,14 @@ class BrickyEvaluationDataset(BaseModel):
             self.traces.append(t)
     
     def write_to_yaml_file(self):
-        traces_for_dump = [t.dict_for_yaml_print() for t in self.traces]
-        with open("bricky_human_feedback.yaml", "w") as f:
-            f.write(yaml.dump(
-                traces_for_dump, 
-                sort_keys=False, 
-                allow_unicode=True, 
-                indent=4,
-                default_flow_style=False,
-            ))
+        super(self).write_to_yaml_file("../data/bricky_from_users.yaml")
     
     @classmethod
     def load_from_yaml_file(cls):
-        with open("bricky_human_feedback.yaml", "r") as file:
-            data = yaml.safe_load(file)
-        dataset = cls()
-        dataset.traces = [Trace.from_dict(d) for d in data]
-        return dataset
+        super(cls).load_from_yaml_file("../data/bricky_from_users.yaml")
 
 
-class DatabricksSyntheticDataset(BaseModel):
+class DatabricksSyntheticDataset(Traces):
     """
     # Usage in notebook
     # importlib.reload(trace_utils)
@@ -212,7 +263,6 @@ class DatabricksSyntheticDataset(BaseModel):
     # dsd.add_traces_from_csv(csv_path)
     # dsd.write_to_yaml_file()
     """
-    traces: List[Trace] = Field(description="List of Traces", default=[])
     
     def add_traces_from_csv(self, path):
         df = pd.read_csv(path, index_col=0)
@@ -242,20 +292,9 @@ class DatabricksSyntheticDataset(BaseModel):
             self.traces.append(t)
     
     def write_to_yaml_file(self):
-        traces_for_dump = [t.dict_for_yaml_print() for t in self.traces]
-        with open("databricks_docs_synthetic.yaml", "w") as f:
-            f.write(yaml.dump(
-                traces_for_dump, 
-                sort_keys=False, 
-                allow_unicode=True, 
-                indent=4,
-                default_flow_style=False,
-            ))
+        super(self).write_to_yaml_file("../data/databricks_docs_synthetic_domain_knowledge.yaml")
     
     @classmethod
     def load_from_yaml_file(cls):
-        with open("databricks_docs_synthetic.yaml", "r") as file:
-            data = yaml.safe_load(file)
-        dataset = cls()
-        dataset.traces = [Trace.from_dict(d) for d in data]
-        return dataset
+        super(cls).load_from_yaml_file("../data/databricks_docs_synthetic_domain_knowledge.yaml")
+    
