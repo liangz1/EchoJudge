@@ -290,3 +290,198 @@
             candidate_1: directly_answered_by_gpt_35
             candidate_2: answered_by_gpt_35_with_ground_truth_context
         preferred_candidate: answered_by_gpt_35_with_ground_truth_context
+-   trace_id: 4770
+    user_input: How do I register the UDAF with Spark SQL?
+    responses:
+    -   responder_name: generated_ground_truth_answer
+        response_text: >-
+            To register the UDAF with Spark SQL, you can use the following Scala code:
+
+
+            ```scala
+
+            spark.udf.register("gm", new GeometricMean)
+
+            ```
+
+            This code registers the UDAF with the name "gm" and the instance of the
+            GeometricMean class. After registering, you can use the UDAF in your Spark
+            SQL queries and DataFrame operations.
+        source:
+        - 'your buffer schema given an input. override def update(buffer: MutableAggregationBuffer,
+            input: Row): Unit = { buffer(0) = buffer.getAsLong + 1 buffer(1) = buffer.getAsDouble
+            * input.getAsDouble } // This is how to merge two objects with the bufferSchema
+            type. override def merge(buffer1: MutableAggregationBuffer, buffer2: Row):
+            Unit = { buffer1(0) = buffer1.getAsLong + buffer2.getAsLong buffer1(1)
+            = buffer1.getAsDouble * buffer2.getAsDouble } // This is where you output
+            the final value, given the final value of your bufferSchema. override
+            def evaluate(buffer: Row): Any = { math.pow(buffer.getDouble(1), 1.toDouble
+            / buffer.getLong(0)) } } ``` Register the UDAF with Spark SQL ----------------------------------
+            ```scala spark.udf.register("gm", new GeometricMean) ``` Use your UDAF
+            --------------- ```scala // Create a DataFrame and Spark SQL table import
+            org.apache.spark.sql.functions._ val ids = spark.range(1, 20) ids.createOrReplaceTempView("ids")
+            val df = spark.sql("select id, id % 3 as group_id from ids") df.createOrReplaceTempView("simple")
+            ``` ```sql -- Use a group_by statement and call the UDAF. select group_id,
+            gm(id) from simple group by group_id ``` ```scala // Or use DataFrame
+            syntax to call the aggregate function. // Create an instance of UDAF GeometricMean.
+            val gm = new GeometricMean // Show the geometric mean of values of column
+            "id". df.groupBy("group_id").agg(gm(col("id")).as("GeometricMean")).show()
+            // Invoke the UDAF by its assigned name.'
+        gradings:
+        -   judge_name: liang.zhang@
+            criteria:
+            -   name: retrieval
+                rating: 1
+                reason: Ground-truth context is provided.
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: Correct, concise and easy to read.
+                tags: []
+    -   responder_name: directly_answered_by_gpt_35
+        response_text: >-
+            To register a User-Defined Aggregate Function (UDAF) with Spark SQL, you
+            need to follow these steps:
+
+
+            1. Create a class that extends the `UserDefinedAggregateFunction` abstract
+            class. This class represents the UDAF and defines the logic for initialization,
+            updating, merging, and finalizing the aggregation.
+
+
+            ```scala
+
+            import org.apache.spark.sql.expressions.{MutableAggregationBuffer, UserDefinedAggregateFunction}
+
+            import org.apache.spark.sql.types.{DataType, LongType, StructType}
+
+            import org.apache.spark.sql.Row
+
+
+            class MyUDAF extends UserDefinedAggregateFunction {
+              // Define the input schema
+              def inputSchema: StructType = ???
+
+              // Define the buffer schema
+              def bufferSchema: StructType = ???
+
+              // Define the output data type
+              def dataType: DataType = ???
+
+              // Define whether the UDAF is deterministic or not
+              def deterministic: Boolean = ???
+
+              // Initialize the buffer
+              def initialize(buffer: MutableAggregationBuffer): Unit = ???
+
+              // Update the buffer based on a new input row
+              def update(buffer: MutableAggregationBuffer, input: Row): Unit = ???
+
+              // Merge two buffer values together
+              def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = ???
+
+              // Calculate the final result of the aggregation
+              def evaluate(buffer: Row): Any = ???
+            }
+
+            ```
+
+
+            2. Implement the methods of the `UserDefinedAggregateFunction` abstract
+            class to define the input schema, buffer schema, output data type, determinism,
+            initialization, updating, merging, and finalization logic.
+
+
+            3. Register the UDAF with Spark SQL by calling the `register` method on
+            a `SparkSession` object.
+
+
+            ```scala
+
+            val spark = SparkSession.builder
+              .appName("UDAF Example")
+              .getOrCreate()
+
+            val myUDAF = new MyUDAF()
+
+            spark.udf.register("my_udaf", myUDAF)
+
+            ```
+
+
+            4. Now, you can use the registered UDAF in Spark SQL queries.
+
+
+            ```scala
+
+            val df = spark.read.table("my_table")
+
+            df.createOrReplaceTempView("my_table_view")
+
+
+            val result = spark.sql("SELECT my_udaf(column) FROM my_table_view")
+
+            result.show()
+
+            ```
+
+
+            Replace `"my_udaf"` with the desired name for your UDAF, and replace `"column"`
+            with the column on which you want to apply the UDAF in your query.
+
+
+            That's it! You have successfully registered and used a UDAF with Spark
+            SQL.
+        source: []
+        gradings:
+        -   judge_name: liang.zhang@
+            criteria:
+            -   name: retrieval
+                rating: 0
+                reason: we don't know what is retrieved
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: This is actually a pretty good answer even thought no context is provided.
+                    Awesome structure, easy to read. However, one drawback is that to use the UDAF,
+                    you need to call `select group_id, my_udaf(value) from my_table group by group_id`,
+                    where the important part is to call "group by" since it's an "aggregated
+                    function". The answer calls it as a regular UDF, which is not correct. But
+                    this is a minor issue since the question is about how to register a UDAF,
+                    not focusing on how to use it.
+                tags: []
+    -   responder_name: answered_by_gpt_35_with_ground_truth_context
+        response_text: >-
+            To register the UDAF with Spark SQL, you can follow the steps below:
+
+
+            1. Create an instance of your UDAF class. For example, if your UDAF class
+            is named `GeometricMean`, you can create an instance like this: `val gm
+            = new GeometricMean`.
+
+
+            2. Use the `register` method of the `udf` object in Spark SQL to register
+            the UDAF. Pass in a name for the UDAF and the instance of your UDAF class.
+            For example: `spark.udf.register("gm", gm)`.
+
+
+            After registering the UDAF, you can use it in your SQL queries or DataFrame
+            operations by referencing the name you assigned during registration.
+        source: []
+        gradings:
+        -   judge_name: liang.zhang@
+            criteria:
+            -   name: retrieval
+                rating: 1
+                reason: Ground-truth context is provided.
+                tags: []
+            -   name: answer
+                rating: 1
+                reason: Really good answer! Correct, concise and easy to read.
+                tags: []
+    preferences:
+    -   judge_name: liang.zhang@
+        candidates:
+            candidate_1: directly_answered_by_gpt_35
+            candidate_2: answered_by_gpt_35_with_ground_truth_context
+        preferred_candidate: answered_by_gpt_35_with_ground_truth_context
