@@ -156,6 +156,17 @@ class Trace(BaseModel):
         )
 
 class BrickyEvaluationDataset(BaseModel):
+    """
+    # Usage in notebook
+    # importlib.reload(trace_utils)
+    # from trace_utils import Trace, BrickyEvaluationDataset
+    # csv_path = "../Bricky/gold_docs_qna_conversation_turns_2023_11_13.csv"
+    # dataset = BrickyEvaluationDataset()
+    # dataset.add_traces_from_usage_log_csv(csv_path)
+    # dataset.write_to_yaml_file()
+    # loaded_dataset = BrickyEvaluationDataset.load_from_yaml_file()
+    # loaded_dataset.traces[21]
+    """
     traces: List[Trace] = Field(description="List of Traces", default=[])
     
     def add_traces_from_usage_log_csv(self, path):
@@ -185,6 +196,65 @@ class BrickyEvaluationDataset(BaseModel):
     @classmethod
     def load_from_yaml_file(cls):
         with open("bricky_human_feedback.yaml", "r") as file:
+            data = yaml.safe_load(file)
+        dataset = cls()
+        dataset.traces = [Trace.from_dict(d) for d in data]
+        return dataset
+
+
+class DatabricksSyntheticDataset(BaseModel):
+    """
+    # Usage in notebook
+    # importlib.reload(trace_utils)
+    # from trace_utils import Trace, DatabricksSyntheticDataset
+    # csv_path = "../DatabricksSynthetic/question_answer_chunk_direct_context.csv"
+    # dsd = DatabricksSyntheticDataset()
+    # dsd.add_traces_from_csv(csv_path)
+    # dsd.write_to_yaml_file()
+    """
+    traces: List[Trace] = Field(description="List of Traces", default=[])
+    
+    def add_traces_from_csv(self, path):
+        df = pd.read_csv(path, index_col=0)
+        for i, row in df.iterrows():
+            generated_ground_truth_answer = Response(
+                responder_name="generated_ground_truth_answer",
+                response_text=LongStr(text=row["answer"]),
+                source=[row["chunk"]],
+            )
+            directly_answered_by_gpt_35 = Response(
+                responder_name="directly_answered_by_gpt_35",
+                response_text=LongStr(text=row["directly_answered_by_gpt35"]),
+            )
+            answered_by_gpt_35_with_ground_truth_context = Response(
+                responder_name="answered_by_gpt_35_with_ground_truth_context",
+                response_text=LongStr(text=row["answered_by_gpt35_with_context"]),
+            )
+            t = Trace(
+                trace_id=i,
+                user_input=row["question"],
+                responses=[
+                    generated_ground_truth_answer,
+                    directly_answered_by_gpt_35,
+                    answered_by_gpt_35_with_ground_truth_context,
+                ],
+            )
+            self.traces.append(t)
+    
+    def write_to_yaml_file(self):
+        traces_for_dump = [t.dict_for_yaml_print() for t in self.traces]
+        with open("databricks_docs_synthetic.yaml", "w") as f:
+            f.write(yaml.dump(
+                traces_for_dump, 
+                sort_keys=False, 
+                allow_unicode=True, 
+                indent=4,
+                default_flow_style=False,
+            ))
+    
+    @classmethod
+    def load_from_yaml_file(cls):
+        with open("databricks_docs_synthetic.yaml", "r") as file:
             data = yaml.safe_load(file)
         dataset = cls()
         dataset.traces = [Trace.from_dict(d) for d in data]
