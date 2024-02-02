@@ -272,29 +272,29 @@ class DatabricksSyntheticDataset(Traces):
                 response_text=LongStr(text=row["answer"]),
                 source=[row["chunk"]],
             )
-            directly_answered_by_gpt_35 = Response(
-                responder_name="directly_answered_by_gpt_35",
-                response_text=LongStr(text=row["directly_answered_by_gpt35"]),
+            directly_answered = Response(
+                responder_name="directly_answered_by_gpt_4",
+                response_text=LongStr(text=row["directly_answered_by_gpt4_turbo"]),
             )
-            answered_by_gpt_35_with_ground_truth_context = Response(
-                responder_name="answered_by_gpt_35_with_ground_truth_context",
-                response_text=LongStr(text=row["answered_by_gpt35_with_context"]),
+            answered_with_ground_truth_context = Response(
+                responder_name="answered_by_gpt_4_with_ground_truth_context",
+                response_text=LongStr(text=row["answered_by_gpt4_turbo_with_context"]),
             )
             t = Trace(
                 trace_id=i,
                 user_input=row["question"],
                 responses=[
                     generated_ground_truth_answer,
-                    directly_answered_by_gpt_35,
-                    answered_by_gpt_35_with_ground_truth_context,
+                    directly_answered,
+                    answered_with_ground_truth_context,
                 ],
             )
             self.traces.append(t)
     
     def write_to_yaml_file(self):
-        super(self).write_to_yaml_file("../data/databricks_docs_synthetic_domain_knowledge.yaml")
+        super().write_to_yaml_file("../data/databricks_docs_synthetic_gpt4_turbo.yaml")
     
     @classmethod
     def load_from_yaml_file(cls):
-        super(cls).load_from_yaml_file("../data/databricks_docs_synthetic_domain_knowledge.yaml")
+        super().load_from_yaml_file("../data/databricks_docs_synthetic_gpt4_turbo.yaml")
     
