@@ -273,11 +273,11 @@ class DatabricksSyntheticDataset(Traces):
                 source=[row["chunk"]],
             )
             directly_answered = Response(
-                responder_name="directly_answered_by_gpt_4",
+                responder_name="directly_answered_by_gpt_4_turbo",
                 response_text=LongStr(text=row["directly_answered_by_gpt4_turbo"]),
             )
             answered_with_ground_truth_context = Response(
-                responder_name="answered_by_gpt_4_with_ground_truth_context",
+                responder_name="answered_by_gpt_4_turbo_with_ground_truth_context",
                 response_text=LongStr(text=row["answered_by_gpt4_turbo_with_context"]),
             )
             t = Trace(

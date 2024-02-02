@@ -194,15 +194,18 @@
             \ used and accessed."
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: It's good that it mentioned governance and usage tracking, but it
+                    missed the "notebook sharing" and "Unity Catalog volume sharing". Also,
+                    it mentioned more features that seems correct but not in the ground
+                    truth context. I cannot tell whether it's correct or incorrect.
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
@@ -214,17 +217,18 @@
             and improves performance.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is as good as the ground truth answer. Correct, concise,
+                    and easy to read.
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             Delta Sharing is an open protocol for secure, real-time sharing of large
             datasets, which was designed by Databricks. It is primarily focused on
@@ -293,17 +297,23 @@
             and platforms, with a strong emphasis on security, efficiency, and interoperability.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: This seems a really good answer. It's not directly answering
+                    the question with the ground truth context, but it's providing a
+                    lot of useful information. This answer seems very decent for an
+                    audience who wants to know more about Delta Sharing. It seems not fair
+                    to give it a 0, but I have to be strict since it does not mention
+                    "notebook sharing", "Unity Catalog volume sharing", "usage tracking"
+                    and "auditing".
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             The Delta Sharing server, particularly when integrated into Databricks,
             supports several features that are not available in other protocols. These
@@ -351,7 +361,7 @@
             capabilities, or the seamless sharing of notebooks and large data volumes.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -359,7 +369,8 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is as good as the ground truth answer. Correct, concise,
+                    and easy to read.
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
@@ -508,7 +519,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             Delta Sharing is a protocol designed to facilitate secure and scalable
             data sharing across organizations in real-time, even if they are using
@@ -548,7 +559,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             In Delta Sharing, a share is a read-only collection of tables and table
             partitions that a provider wants to share with one or more recipients.
@@ -719,7 +730,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             In Unity Catalog, a recipient typically refers to an entity (such as a
             user, group, or service) that has been granted access or permissions to
@@ -758,7 +769,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             In the context of Unity Catalog within Databricks, a recipient is an entity—such
             as a user, group, or organization—that receives shares from a provider.
@@ -957,7 +968,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             Open Delta Sharing, often referred to in the context of data sharing and
             analytics, is a concept that emerges from the Delta Lake project. Delta
@@ -1009,7 +1020,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: "Open Delta Sharing is a protocol designed to allow secure\
             \ and straightforward sharing of data across different platforms and users,\
             \ regardless of whether they are using Databricks. It enables data providers\
@@ -1218,7 +1229,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             Databricks-to-Databricks Delta Sharing is an extension of the Delta Sharing
             feature within Databricks, designed to facilitate easy and secure sharing
@@ -1291,7 +1302,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             Databricks-to-Databricks Delta Sharing is a feature that allows for the
             sharing of data between users who have a Databricks workspace enabled
@@ -1512,7 +1523,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             As of my last update in April 2023, Delta Sharing is a protocol designed
             to facilitate the secure sharing of data across organizations. It is primarily
@@ -1570,7 +1581,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             In a Delta Sharing share, you can include various types of assets depending
             on whether you are sharing data with a Databricks recipient (Databricks-to-Databricks
@@ -1770,7 +1781,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             For incremental data ingestion in Databricks, the recommended method often
             involves using Auto Loader for its simplicity, scalability, and reliability.
@@ -1856,7 +1867,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             The recommended method for incremental data ingestion in Databricks is
             using Auto Loader. Auto Loader is designed to automatically detect and
@@ -2107,7 +2118,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: "Scheduling a notebook as a task in Databricks can be accomplished\
             \ by creating a job that runs the notebook according to a specified schedule.\
             \ This allows you to automate the execution of data analysis, ETL processes,\
@@ -2167,7 +2178,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: "To schedule a notebook as a task in Databricks, follow these\
             \ steps:\n\n1. **Access the Notebook**: Open the notebook you want to\
             \ schedule within Databricks.\n\n2. **Schedule the Notebook**: Look for\
@@ -2456,7 +2467,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             When choosing between Auto Loader and COPY INTO for data ingestion in
             Databricks, there are several considerations to keep in mind. Each method
@@ -2561,7 +2572,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: "When deciding between using Auto Loader and COPY INTO for\
             \ data ingestion in Databricks, consider the following factors:\n\n1.\
             \ **Volume of Files**: \n   - **COPY INTO**: Ideal for scenarios where\
@@ -2818,7 +2829,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: "Databricks Lakehouse Monitoring is a feature within the Databricks\
             \ ecosystem designed to provide insights into the health, performance,\
             \ and usage of your data lakehouse. By leveraging this tool, users can\
@@ -2862,7 +2873,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             Databricks Lakehouse Monitoring is designed to help you answer a variety
             of questions related to data quality, consistency, and the performance
@@ -3147,7 +3158,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             Databricks Lakehouse, as of the last update before my last training cut-off
             in April 2023, offers an enhanced data management and analytics platform.
@@ -3216,7 +3227,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             Databricks Lakehouse Monitoring provides three types of analysis:
 
@@ -3400,7 +3411,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             In Databricks Lakehouse Monitoring, a baseline table serves multiple crucial
             roles, particularly in the context of performance monitoring, data quality,
@@ -3473,7 +3484,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             The purpose of a baseline table in Databricks Lakehouse Monitoring is
             to serve as a reference point for measuring drift, which is the change
@@ -3713,7 +3724,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             As of my last update in April 2023, Databricks offers a variety of AI
             and machine learning functions that SQL users can leverage directly within
@@ -3788,7 +3799,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             Databricks provides AI functions that enable SQL data analysts to directly
             access and utilize large language models (LLMs), including those from
@@ -4005,7 +4016,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             The types of data assets shared on Databricks Marketplace include datasets,
             Databricks notebooks, Databricks Solution Accelerators, and machine learning
@@ -4023,7 +4034,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             Databricks Marketplace is a platform designed to facilitate the sharing
             and discovery of data and analytics assets among organizations and data
@@ -4368,7 +4379,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             To read binary files using Databricks Runtime, you need to specify the
             data source format as `binaryFile`. Here is an example in Python:
@@ -4398,7 +4409,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             To read binary files using Databricks Runtime, you typically leverage
             the `spark.read.format()` function with the format set to "binaryFile".
@@ -4778,7 +4789,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: "To schedule a query execution in Azure Databricks, follow\
             \ these steps:\n\n1. Open the Query Editor and click on **Schedule** then\
             \ **Add schedule** to open a menu with schedule settings. \n\n2. Choose\
@@ -4808,7 +4819,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: "To schedule a query execution in Azure Databricks, you can\
             \ use the Databricks Jobs feature. Jobs in Azure Databricks allow you\
             \ to schedule and run automated workloads, such as running notebooks,\
@@ -5113,7 +5124,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             To add a user to an Azure Databricks workspace, follow these steps:
 
@@ -5147,7 +5158,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             Adding a user to an Azure Databricks workspace is a straightforward process,
             but it requires you to have the necessary permissions, typically as an
@@ -5545,7 +5556,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             To create a visualization in Databricks SQL using a SQL query, you need
             to follow these steps:
@@ -5593,7 +5604,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: "Creating a visualization in Databricks SQL using a SQL query\
             \ involves several steps. Databricks allows you to analyze and visualize\
             \ data directly from your SQL queries, making it a powerful tool for generating\
@@ -6046,7 +6057,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: "To implement a UserDefinedAggregateFunction in Scala for Apache\
             \ Spark SQL, you have to extend the UserDefinedAggregateFunction class\
             \ and implement the necessary methods. Here is a step-by-step process:\n\
@@ -6086,7 +6097,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: "Implementing a `UserDefinedAggregateFunction` (UDAF) in Apache\
             \ Spark SQL using Scala involves several steps. UDAFs allow you to create\
             \ custom aggregate functions that can operate on multiple rows at a time,\
@@ -6152,7 +6163,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: "Implementing a UserDefinedAggregateFunction (UDAF) in Scala\
             \ for Apache Spark SQL involves several steps. The UDAF will allow you\
             \ to define custom aggregation operations that can be used in your Spark\
@@ -6489,7 +6500,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: directly_answered_by_gpt_4
+    -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
             To register a User-Defined Aggregate Function (UDAF) with Spark SQL, you
             need to follow several steps. Spark offers different ways to create and
@@ -6603,7 +6614,7 @@
                 rating: 1
                 reason: helpful
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
             To register a User-Defined Aggregate Function (UDAF) with Spark SQL, you
             use the `register` method on the SparkSession's UDF registration utility.
