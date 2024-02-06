@@ -3193,15 +3193,16 @@
             you to maintain the health and performance of your data operations.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: The correct answer is "time series, snapshot, and inference".
+                    Factual error.
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: "Databricks Lakehouse Monitoring provides the following types\
@@ -3225,7 +3226,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise, and helpful.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
@@ -3286,15 +3287,16 @@
             compliance, and manage costs effectively within their lakehouse environments.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: The correct answer is "time series, snapshot, and inference".
+                    Factual error.
                 tags: []
     -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
@@ -3329,7 +3331,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise, and helpful.
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
