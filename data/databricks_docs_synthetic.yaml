@@ -1967,16 +1967,18 @@
         -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: The context is not precisely relevant. The context is mainly
-                    about "trigger it manually".
+                rating: 1
+                reason: The relevant part is only "Click Schedule on the right side of the header
+                    bar. Enter a unique name for the Job name." There are a lot of irrelevant
+                    details.
                 tags: []
             -   name: answer
-                rating: 0
-                reason: Actually, since the generated question is not precisely right,
-                    the answer is not to the point. It is answering "How can you schedule
+                rating: 1
+                reason: Actually, since the generated question is not precisely relevant,
+                    the answer contains irrelevant details. It is answering "How can you schedule
                     a notebook as a task and trigger it manually in Databricks?",
-                    not the question.
+                    not "How can you schedule a notebook as a task in Databricks?". However,
+                    the answer is still correct and helpful.
                 tags: []
     -   responder_name: directly_answered_by_gpt_35
         response_text: >-
@@ -2022,8 +2024,9 @@
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: This is actually pretty good!
+                rating: -1
+                reason: There is no "Jobs" button on the menu bar. You need to click
+                    "Schedule" on the right side of the header bar.
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -2063,8 +2066,12 @@
                 reason: Wrong context is retrieved.
                 tags: []
             -   name: answer
-                rating: 0
-                reason: The answer is misled by the wrong context.
+                rating: 1
+                reason: Actually, since the generated question is not precisely relevant,
+                    the answer contains irrelevant details. It is answering "How can you schedule
+                    a notebook as a task and trigger it manually in Databricks?",
+                    not "How can you schedule a notebook as a task in Databricks?". However,
+                    the answer is still correct and helpful.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4
         response_text: >-
@@ -2111,15 +2118,17 @@
             complex ETL processes, and training machine learning models.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: The "Jobs" tab is not in the upper right corner of the workspace.
+                    You need to click "Schedule" on the right side of the header bar. Other
+                    details are also wrong.  
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
@@ -2153,7 +2162,11 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Actually, since the generated question is not precisely relevant,
+                    the answer contains irrelevant details. It is answering "How can you schedule
+                    a notebook as a task and trigger it manually in Databricks?",
+                    not "How can you schedule a notebook as a task in Databricks?". However,
+                    the answer is still correct and helpful.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: "Scheduling a notebook as a task in Databricks can be accomplished\
@@ -2205,7 +2218,7 @@
             \ consistent."
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -2213,7 +2226,9 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is a pretty good answer with correct button positions.
+                    It is correctly answering "How can you schedule a notebook as
+                    a task in Databricks?". This is helpful.
                 tags: []
     -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: "To schedule a notebook as a task in Databricks, follow these\
@@ -2250,7 +2265,11 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Actually, since the generated question is not precisely relevant,
+                    the answer contains irrelevant details. It is answering "How can you schedule
+                    a notebook as a task and trigger it manually in Databricks?",
+                    not "How can you schedule a notebook as a task in Databricks?". However,
+                    the answer is still correct and helpful.
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
@@ -2258,6 +2277,11 @@
             candidate_1: directly_answered_by_gpt_35
             candidate_2: answered_by_gpt_35_with_ground_truth_context
         preferred_candidate: directly_answered_by_gpt_35
+    -   judge_name: liang.zhang@
+        candidates:
+            candidate_1: generated_ground_truth_answer
+            candidate_2: directly_answered_by_gpt_4_turbo
+        preferred_candidate: directly_answered_by_gpt_4_turbo
 -   trace_id: 690
     user_input: What are the considerations when choosing between Auto Loader and
         COPY INTO for data ingestion in Databricks?
