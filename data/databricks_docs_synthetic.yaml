@@ -1449,7 +1449,7 @@
             on the shared data.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -1519,15 +1519,18 @@
             specific capabilities of the platform you are using.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: This answer has no obvious factual error, but it's clearly not
+                    very helpful if it's provided by a databricks assistant. The key is
+                    to distinguish non-Databricks sharing and Databricks-to-Databricks
+                    sharing.
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
@@ -1544,7 +1547,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise and easy to read.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
@@ -1594,15 +1597,18 @@
             consulting the official documentation and release notes is recommended.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: This answer has no obvious factual error, but it's clearly not
+                    very helpful if it's provided by a databricks assistant. The key is
+                    to distinguish non-Databricks sharing and Databricks-to-Databricks
+                    sharing.
                 tags: []
     -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
@@ -1638,7 +1644,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: The best answer!
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
