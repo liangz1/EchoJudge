@@ -693,7 +693,7 @@
             -   name: answer
                 rating: 1
                 reason: This is a perfect answer extracting the relevant sentences
-                    from the ground truth chunk! Bette than the generated ground-truth
+                    from the ground truth chunk! Better than the generated ground-truth
                     answer.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4
@@ -704,15 +704,17 @@
             Catalog.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: This is an OK answer except for the vague term "asset or package".
+                    It should be "share", so I rate 0 instead of 1. This is an important detail
+                    that should be included. This is not terribly wrong, and somewhat helpful.
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
@@ -727,15 +729,16 @@
             previously access.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is a perfect answer extracting the relevant sentences
+                    from the ground truth chunk!
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
@@ -766,7 +769,7 @@
             and its features.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -774,7 +777,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is a good answer! No obvious incorrect facts. Impressive.
                 tags: []
     -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
@@ -808,15 +811,15 @@
             environment.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: The best answer!
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
