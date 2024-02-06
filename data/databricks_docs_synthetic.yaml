@@ -1210,15 +1210,16 @@
             efficiency and collaboration.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: There is no obvious factual error, but too vague. It's not a
+                    very helpful answer if provided by a databricks assistant.
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
@@ -1243,7 +1244,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise and easy to read.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
@@ -1308,15 +1309,20 @@
             the full potential of their data assets in a streamlined manner.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: It's actually a very impressive answer, providing information from
+                    general to specific, making it easier to follow if the audience has no
+                    background knowledge. However, it missed some key details such as
+                    "recipient doesn't need a token", "provider doesn't need to manage
+                    recipient tokens", "sharing of Databricks notebook files, views, and
+                    Unity Catalog volumes".
                 tags: []
     -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
@@ -1347,15 +1353,16 @@
             provides functionalities to manage access to data across workspaces efficiently.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
-                rating: 0
-                reason: we don't know what is retrieved
+                rating: 1
+                reason: Ground-truth context is provided.
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is the best answer that extract the most complete relevant
+                    details from the context!
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
