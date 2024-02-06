@@ -3452,15 +3452,16 @@
             and ensuring the reliability and accuracy of the data over time.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: Plausible hallucinated answer. Specifically, it's not "historical"
+                    data, but "a sample of expected data". Factual error.
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
@@ -3480,7 +3481,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise, and helpful.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
@@ -3545,15 +3546,16 @@
             regarding the health and optimization of the lakehouse environment.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: Hallucinated answer. Not Databricks Lakehouse Monitoring.
+                    Factual error. Not about "system performance".
                 tags: []
     -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
@@ -3590,7 +3592,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct and helpful.
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
