@@ -3768,15 +3768,16 @@
             \ and extract insights from their AI processes."
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: Hallucinated answer. Not helpful. It would be good if we do have
+                    all these functionalities, but clearly we don't.
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
@@ -3795,7 +3796,9 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: This is a correct answer, but as a response to the user input,
+                    we don't want it to say "The context doesn't provide specific details".
+                    This is a minor issue, not affecting the helpfulness of the answer.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
@@ -3862,15 +3865,16 @@
             official documentation or reaching out to their support team.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: unfortunately, this is a hallucinated answer. Not helpful. Factual
+                    error.
                 tags: []
     -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
@@ -3923,7 +3927,8 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: It's impressive that the model can elaborate on a short context
+                     and make the answer feel informative.
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
