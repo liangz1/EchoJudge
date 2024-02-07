@@ -114,7 +114,6 @@ class Trace(BaseModel):
                 raise ValueError(f"candidate_1: {preference.candidates.candidate_1} not found in responders: {responders}")
             if preference.candidates.candidate_2 not in responders:
                 raise ValueError(f"candidate_2: {preference.candidates.candidate_2} not found in responders: {responders}")
-        return v
 
     @classmethod
     def example(cls):
