@@ -6484,15 +6484,13 @@
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
+                rating: 0
                 reason: This is actually a pretty good answer even thought no context
                     is provided. Awesome structure, easy to read. However, one drawback
                     is that to use the UDAF, you need to call `select group_id, my_udaf(value)
                     from my_table group by group_id`, where the important part is
                     to call "group by" since it's an "aggregated function". The answer
-                    calls it as a regular UDF, which is not correct. But this is a
-                    minor issue since the question is about how to register a UDAF,
-                    not focusing on how to use it.
+                    calls it as a regular UDF, which is not correct.
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -6556,15 +6554,19 @@
             \ UDAF and target column."
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: The register part is correct, but it added incorrect parts for using
+                    the UDAF. To use the UDAF, you need to call `select group_id, myAverage(value)
+                    from my_table group by group_id`, where the important part is to call
+                    "group by" since it's an "aggregated function". The answer calls it
+                    as a regular UDF, which is not correct.
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
@@ -6593,7 +6595,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise and easy to read.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
@@ -6699,15 +6701,18 @@
             for Spark 2.x and later versions.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: This is too wordy and inaccurate. It fails to use the group
+                    by statement when using the UDAF. The answer calls it as a regular
+                    UDF, which is not correct. The code 'MyAverage.toColumn.name("average")'
+                    also seems wrong.
                 tags: []
     -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
@@ -6791,7 +6796,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct and easy to read.
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
