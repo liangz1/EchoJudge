@@ -5633,17 +5633,18 @@
             \ data that can be visualized."
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: -1
+                reason: The details are wrong. You don't need to click on the "New SQL
+                    script" button to create a new SQL script. There is no "Chart" button.
                 tags: []
-    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
             To create a visualization in Databricks SQL using a SQL query, you need
             to follow these steps:
@@ -5689,7 +5690,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise, and easy to read.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: "Creating a visualization in Databricks SQL using a SQL query\
@@ -5736,17 +5737,18 @@
             \ Databricks documentation for the most accurate and detailed instructions."
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
                 reason: we don't know what is retrieved
                 tags: []
             -   name: answer
-                rating: 1
-                reason: helpful
+                rating: 0
+                reason: The instruction is vague. It says "a chart icon or a button 
+                    labeled 'Visualize'", which is non-existing.
                 tags: []
-    -   responder_name: answered_by_gpt_4_with_ground_truth_context
+    -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: "Creating a visualization in Databricks SQL using a SQL query\
             \ involves a few straightforward steps. Here's how you can do it:\n\n\
             1. **Write and Run Your SQL Query**: First, you need to write the SQL\
@@ -5790,7 +5792,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct and easy to read.
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
