@@ -4354,7 +4354,7 @@
                 tags: []
             -   name: answer
                 rating: -1
-                reason: Hallucinated answer. Incorrect.
+                reason: Hallucinated answer. Incorrect. No "spark.read.binaryFiles".
                 tags: []
     -   responder_name: answered_by_gpt_35_with_ground_truth_context
         response_text: >-
@@ -4448,7 +4448,7 @@
             Databricks Runtime 4.0 and above.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -4456,7 +4456,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct and helpful.
                 tags: []
     -   responder_name: answered_by_gpt_4_turbo_with_ground_truth_context
         response_text: >-
@@ -4486,7 +4486,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct, concise, and easy to read.
                 tags: []
     -   responder_name: directly_answered_by_gpt_4_turbo
         response_text: >-
@@ -4581,7 +4581,7 @@
             additional options or perform more complex data processing.
         source: []
         gradings:
-        -   judge_name: human
+        -   judge_name: liang.zhang@
             criteria:
             -   name: retrieval
                 rating: 0
@@ -4589,7 +4589,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: A bit wordy but correct and helpful.
                 tags: []
     -   responder_name: answered_by_gpt_4_with_ground_truth_context
         response_text: >-
@@ -4684,7 +4684,7 @@
                 tags: []
             -   name: answer
                 rating: 1
-                reason: helpful
+                reason: Correct and easy to read.
                 tags: []
     preferences:
     -   judge_name: liang.zhang@
